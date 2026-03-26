@@ -1,0 +1,287 @@
+/* ═══════════════════════════════════════════════════
+   Tokens
+   ═══════════════════════════════════════════════════ */
+:root {
+  --bg:          #f5f5f5;
+  --surface:     #ffffff;
+  --border:      #e5e7eb;
+  --border-dark: #d1d5db;
+  --primary:     #0d9488;        /* teal-600  */
+  --primary-dim: #e6f7f5;        /* teal-50   */
+  --text:        #111827;
+  --text-muted:  #6b7280;
+  --text-sub:    #9ca3af;
+  --shadow-sm:   0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:   0 4px 6px rgba(0,0,0,.06), 0 2px 4px rgba(0,0,0,.04);
+  --radius:      8px;
+  --radius-sm:   5px;
+
+  /* Row stripe colours (very subtle left-border accent only) */
+  --accent-a: #0d9488;
+  --accent-c: #6366f1;
+  --accent-f: #d97706;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:          #111827;
+    --surface:     #1f2937;
+    --border:      #374151;
+    --border-dark: #4b5563;
+    --primary:     #2dd4bf;
+    --primary-dim: #134e4a;
+    --text:        #f9fafb;
+    --text-muted:  #9ca3af;
+    --text-sub:    #6b7280;
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   Page shell
+   ═══════════════════════════════════════════════════ */
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 14px;
+}
+
+/* ── Header ──────────────────────────────────────── */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 2rem 1.25rem;
+}
+
+.headerInner { max-width: 1400px; margin: 0 auto; }
+
+.title {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 640px;
+}
+
+/* ── Main ────────────────────────────────────────── */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Row block ───────────────────────────────────── */
+.rowBlock { display: flex; flex-direction: column; gap: 0.5rem; }
+
+.rowLabel {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  padding-left: 0.25rem;
+}
+
+.rowGroupId {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.rowGroupSub {
+  font-size: 0.73rem;
+  color: var(--text-sub);
+}
+
+/* Four cards in a row */
+.rowCards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+/* ── Card ────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.15s;
+}
+
+.card:hover { box-shadow: var(--shadow-md); }
+
+/* ── Card header ─────────────────────────────────── */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.sectorId {
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--primary);
+  color: #fff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 3px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.sectorName {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+/* ── Industry list ───────────────────────────────── */
+.industryList {
+  list-style: none;
+  margin: 0;
+  padding: 0.4rem 0;
+  flex: 1;
+}
+
+.industryItem { display: flex; flex-direction: column; }
+
+/* Level-2 button */
+.industryBtn {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.22rem 0.85rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 0;
+  transition: background 0.1s;
+}
+
+.industryBtn:hover { background: var(--primary-dim); }
+
+.indCode {
+  font-size: 0.63rem;
+  font-weight: 600;
+  color: var(--text-sub);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 3.8rem;
+}
+
+.indName {
+  font-size: 0.76rem;
+  color: var(--text);
+  line-height: 1.35;
+  transition: color 0.1s;
+}
+
+.industryBtn:hover .indName { color: var(--primary); }
+
+/* ── Sub-industry list ───────────────────────────── */
+.subList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Level-3 button */
+.subBtn {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.18rem 0.85rem 0.18rem 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-left: 2px solid var(--border);
+  margin-left: 1.1rem;
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.subBtn:hover {
+  background: var(--primary-dim);
+  border-left-color: var(--primary);
+}
+
+.subCode {
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: var(--text-sub);
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  min-width: 4rem;
+}
+
+.subName {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.3;
+  transition: color 0.1s;
+}
+
+.subBtn:hover .subName { color: var(--primary); }
+
+/* ── More / Less button ──────────────────────────── */
+.moreBtn {
+  align-self: flex-start;
+  margin: 0.3rem 0.85rem 0.65rem;
+  padding: 0.25rem 0.6rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.moreBtn:hover {
+  background: var(--primary-dim);
+  border-color: var(--primary);
+}
+
+/* ── Foot note ───────────────────────────────────── */
+.footNote {
+  font-size: 0.72rem;
+  color: var(--text-sub);
+  margin: 0.5rem 0 0;
+  text-align: center;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 1100px) {
+  .rowCards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .main { padding: 1rem 1rem 2rem; }
+  .header { padding: 1.2rem 1rem 1rem; }
+  .rowCards { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,57 @@
+You are an industry value chain analyst. Generate a complete value chain analysis for the {INDUSTRY_NAME} industry (IM Code: {IM_CODE}).
+
+Output ONLY a valid JSON object (no markdown, no extra text) matching this exact schema:
+
+{
+  "code": "{IM_CODE}",
+  "name": "{INDUSTRY_NAME}",
+  "imCode": "{IM_CODE}",
+  "classificationCode": "{IM_CODE}",
+  "stages": [
+    {
+      "id": "upstream",
+      "name": "Upstream Raw Materials & Components",
+      "subIndustries": [
+        {
+          "name": "Sub-industry name",
+          "cr4": 75,
+          "probit": "HH",
+          "cagr": 4.8,
+          "classificationCodes": [],
+          "leaders": [
+            {
+              "name": "Company Name",
+              "ticker": "TICK",
+              "share": 28,
+              "strengths": ["Strength 1", "Strength 2"]
+            }
+          ],
+          "features": [
+            {
+              "title": "Feature Title",
+              "description": "Feature description text"
+            }
+          ],
+          "opportunity": "Description of key opportunity",
+          "threat": "Description of key threat",
+          "niche": null
+        }
+      ]
+    }
+  ]
+}
+
+RULES:
+1. stages array MUST contain exactly 6 objects with id values (in order): "upstream", "processing", "manufacturing", "distribution", "sales", "customer"
+2. Each stage MUST have at least 3 subIndustries (aim for 4-6)
+3. cr4: integer 0-100 (top-4 revenue share %)
+4. probit: MUST be exactly one of "HH", "HL", "LH", "LL" — ProBIT = Profitability (H/L) × Growth (H/L). HH = high profit + high growth (green); HL = high profit + low growth (teal); LH = low profit + high growth (orange); LL = low profit + low growth (red)
+5. cagr: decimal number (NOT a string, no % sign) e.g. 4.8 not "4.8%"
+6. leaders[].share: decimal number (NOT a string, no % sign) e.g. 28 not "28%"
+7. classificationCodes: always an empty array []
+8. niche: either null OR an object with fields: name (string), ticker (string), share (number), cagr (number), margin (string e.g. ">20%"), strategy (string), valuation (string e.g. "P/E 45x")
+9. Use latest available data (2023-2025), prioritize public companies with verifiable 10-K/10-Q filings
+10. Output ONLY the JSON — no markdown code fences, no preamble, no explanation
+
+Industry to analyze: {INDUSTRY_NAME}
+IM Code: {IM_CODE}

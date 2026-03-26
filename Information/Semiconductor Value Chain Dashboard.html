@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semiconductor Value Chain Dashboard</title>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+            --color-gray-400-rgb: 119, 124, 124;
+            --color-teal-300-rgb: 50, 184, 198;
+            --color-gray-300-rgb: 167, 169, 169;
+            --color-gray-200-rgb: 245, 245, 245;
+
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+            --color-success-rgb: 33, 128, 141;
+            --color-error-rgb: 192, 21, 47;
+            --color-warning-rgb: 168, 75, 47;
+            --color-info-rgb: 98, 108, 113;
+
+            --font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+
+            --space-4: 4px;
+            --space-6: 6px;
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-background: var(--color-charcoal-700);
+                --color-surface: var(--color-charcoal-800);
+                --color-text: var(--color-gray-200);
+                --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+                --color-primary: var(--color-teal-300);
+                --color-primary-hover: var(--color-teal-400);
+                --color-primary-active: var(--color-teal-800);
+                --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+                --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+                --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+                --color-error: var(--color-red-400);
+                --color-success: var(--color-teal-300);
+                --color-warning: var(--color-orange-400);
+                --color-info: var(--color-gray-300);
+                --color-focus-ring: rgba(var(--color-teal-300-rgb), 0.4);
+                --color-btn-primary-text: var(--color-slate-900);
+                --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+                --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+
+                --color-success-rgb: var(--color-teal-300-rgb);
+                --color-error-rgb: var(--color-red-400-rgb);
+                --color-warning-rgb: var(--color-orange-400-rgb);
+                --color-info-rgb: var(--color-gray-300-rgb);
+            }
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-family-base);
+            font-size: var(--font-size-base);
+            line-height: var(--line-height-normal);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .dashboard {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: var(--space-32);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: var(--space-32);
+        }
+
+        .header h1 {
+            font-size: var(--font-size-4xl);
+            font-weight: var(--font-weight-bold);
+            margin: 0 0 var(--space-12) 0;
+            color: var(--color-text);
+        }
+
+        .header-subtitle {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-secondary);
+            margin: var(--space-4) 0;
+        }
+
+        .filters {
+            display: flex;
+            gap: var(--space-12);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: var(--space-32);
+        }
+
+        .filter-btn {
+            padding: var(--space-10) var(--space-20);
+            border: 1px solid var(--color-border);
+            background: var(--color-surface);
+            color: var(--color-text);
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all 250ms ease;
+        }
+
+        .filter-btn:hover {
+            background: var(--color-secondary);
+        }
+
+        .filter-btn.active {
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border-color: var(--color-primary);
+        }
+
+        .content-wrapper {
+            display: flex;
+            gap: var(--space-24);
+            position: relative;
+        }
+
+        .main-content {
+            width: 100%;
+            transition: width 300ms ease-out;
+        }
+
+        .main-content.panel-open {
+            width: 40%;
+        }
+
+        .section {
+            margin-bottom: var(--space-32);
+        }
+
+        .section-header {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: var(--space-16);
+            padding-bottom: var(--space-12);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .concentration-table {
+            width: 100%;
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--color-card-border);
+        }
+
+        .concentration-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .concentration-table th {
+            background: var(--color-secondary);
+            padding: var(--space-12) var(--space-16);
+            text-align: left;
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .concentration-table td {
+            padding: var(--space-12) var(--space-16);
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+            border-bottom: 1px solid var(--color-card-border-inner);
+        }
+
+        .concentration-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .concentration-table tr:hover {
+            background: var(--color-secondary);
+        }
+
+        .probit-badge {
+            display: inline-block;
+            padding: var(--space-6) var(--space-12);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-medium);
+            font-size: var(--font-size-xs);
+        }
+
+        .probit-hh {
+            background-color: rgba(var(--color-success-rgb), 0.2);
+            color: var(--color-success);
+            border: 1px solid var(--color-success);
+        }
+
+        .probit-hl {
+            background-color: var(--color-secondary);
+            color: var(--color-primary);
+            border: 1px solid var(--color-border);
+        }
+
+        .probit-lh {
+            background-color: rgba(var(--color-warning-rgb), 0.15);
+            color: var(--color-warning);
+            border: 1px solid var(--color-warning);
+        }
+
+        .probit-ll {
+            background-color: rgba(var(--color-error-rgb), 0.15);
+            color: var(--color-error);
+            border: 1px solid var(--color-error);
+        }
+
+        .more-btn-container {
+            text-align: right;
+            margin-top: var(--space-12);
+            margin-bottom: var(--space-24);
+        }
+
+        .more-btn {
+            padding: var(--space-8) var(--space-20);
+            background: var(--color-primary);
+            color: var(--color-btn-primary-text);
+            border: none;
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: background 250ms ease;
+        }
+
+        .more-btn:hover {
+            background: var(--color-primary-hover);
+        }
+
+        .side-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100vh;
+            background: var(--color-surface);
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+            transform: translateX(100%);
+            transition: transform 300ms ease-out;
+            overflow-y: auto;
+            z-index: 1000;
+            padding: var(--space-32);
+        }
+
+        .side-panel.active {
+            transform: translateX(0);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-24);
+            padding-bottom: var(--space-16);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .panel-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: var(--font-size-3xl);
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 250ms ease;
+        }
+
+        .close-btn:hover {
+            color: var(--color-text);
+        }
+
+        .subindustry-card {
+            background: var(--color-surface);
+            border: 1px solid var(--color-card-border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-24);
+            margin-bottom: var(--space-24);
+        }
+
+        .subindustry-card h3 {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin: 0 0 var(--space-16) 0;
+        }
+
+        .leaders-section {
+            margin-bottom: var(--space-20);
+        }
+
+        .leaders-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        .company-item {
+            margin-bottom: var(--space-16);
+        }
+
+        .company-name {
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-base);
+            color: var(--color-text);
+            margin-bottom: var(--space-6);
+        }
+
+        .company-strengths {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .company-strengths li {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            padding-left: var(--space-16);
+            position: relative;
+            margin-bottom: var(--space-4);
+        }
+
+        .company-strengths li::before {
+            content: "\2022";
+            position: absolute;
+            left: 0;
+            color: var(--color-primary);
+        }
+
+        .features-section {
+            margin-bottom: var(--space-20);
+        }
+
+        .features-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+            margin-bottom: var(--space-8);
+        }
+
+        .feature-item {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-8);
+        }
+
+        .feature-item strong {
+            color: var(--color-text);
+        }
+
+        .opportunity-section,
+        .threat-section {
+            margin-bottom: var(--space-20);
+            padding: var(--space-12);
+            border-radius: var(--radius-base);
+        }
+
+        .opportunity-section {
+            background: rgba(var(--color-success-rgb), 0.1);
+            border-left: 3px solid var(--color-success);
+        }
+
+        .threat-section {
+            background: rgba(var(--color-error-rgb), 0.1);
+            border-left: 3px solid var(--color-error);
+        }
+
+        .section-label {
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-6);
+        }
+
+        .opportunity-section .section-label {
+            color: var(--color-success);
+        }
+
+        .threat-section .section-label {
+            color: var(--color-error);
+        }
+
+        .section-content {
+            font-size: var(--font-size-sm);
+            color: var(--color-text);
+        }
+
+        .niche-section {
+            background: var(--color-secondary);
+            border-radius: var(--radius-base);
+            padding: var(--space-16);
+        }
+
+        .niche-title {
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            margin-bottom: var(--space-12);
+        }
+
+        .niche-item {
+            font-size: var(--font-size-sm);
+            color: var(--color-text-secondary);
+            margin-bottom: var(--space-4);
+        }
+
+        .niche-item strong {
+            color: var(--color-text);
+        }
+
+        .backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 300ms ease-out;
+            z-index: 999;
+        }
+
+        .backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .data-source {
+            margin-top: var(--space-32);
+            padding-top: var(--space-16);
+            border-top: 1px solid var(--color-border);
+            font-size: var(--font-size-xs);
+            color: var(--color-text-secondary);
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>Value Chain Dashboard</h1>
+            <p class="header-subtitle">Industry: Semiconductors</p>
+            <p class="header-subtitle">IM Code: F2-10</p>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">All Sub-Industries</button>
+            <button class="filter-btn" data-filter="high-concentration">High Concentration (CR4 &gt;60%)</button>
+            <button class="filter-btn" data-filter="high-growth">High Growth (CAGR &gt;10%)</button>
+            <button class="filter-btn" data-filter="probit-hh">ProBIT HH Only</button>
+            <button class="filter-btn" data-filter="leaders">Leaders Focus</button>
+            <button class="filter-btn" data-filter="niches">Niche Winners Only</button>
+        </div>
+
+        <div class="backdrop"></div>
+        <div class="content-wrapper">
+            <div class="main-content">
+
+                <!-- Upstream Section -->
+                <div class="section" data-stage="upstream" data-cr4="85" data-cagr="8.5" data-probit="HH">
+                    <h2 class="section-header">Upstream: Raw Materials &amp; Components</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Silicon Wafers</td>
+                                    <td>92</td>
+                                    <td><span class="probit-badge probit-hl">HL</span></td>
+                                    <td>4.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Photoresist Chemicals</td>
+                                    <td>85</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>11.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Electronic Specialty Gases</td>
+                                    <td>65</td>
+                                    <td><span class="probit-badge probit-hl">HL</span></td>
+                                    <td>6.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Semiconductor IP Cores</td>
+                                    <td>72</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>20.0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="upstream">More</button>
+                    </div>
+                </div>
+
+                <!-- Processing Section -->
+                <div class="section" data-stage="processing" data-cr4="90" data-cagr="15.2" data-probit="HH">
+                    <h2 class="section-header">Processing: Refining &amp; Conversion</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Wafer Fabrication Equipment</td>
+                                    <td>82</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>17.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Lithography Systems</td>
+                                    <td>98</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>21.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Etch &amp; Deposition Equipment</td>
+                                    <td>72</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>12.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Wafer Foundry Services</td>
+                                    <td>90</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>15.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="processing">More</button>
+                    </div>
+                </div>
+
+                <!-- Manufacturing Section -->
+                <div class="section" data-stage="manufacturing" data-cr4="78" data-cagr="18.5" data-probit="HH">
+                    <h2 class="section-header">Manufacturing: Assembly &amp; Production</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>OSAT (Packaging &amp; Test)</td>
+                                    <td>78</td>
+                                    <td><span class="probit-badge probit-hl">HL</span></td>
+                                    <td>8.6%</td>
+                                </tr>
+                                <tr>
+                                    <td>Memory Chips (DRAM &amp; NAND)</td>
+                                    <td>95</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>24.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Fabless IC Design (Logic)</td>
+                                    <td>68</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>28.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Analog &amp; Mixed-Signal ICs</td>
+                                    <td>52</td>
+                                    <td><span class="probit-badge probit-lh">LH</span></td>
+                                    <td>7.2%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="manufacturing">More</button>
+                    </div>
+                </div>
+
+                <!-- Distribution Section -->
+                <div class="section" data-stage="distribution" data-cr4="55" data-cagr="6.8" data-probit="LH">
+                    <h2 class="section-header">Distribution: Logistics &amp; Wholesale</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Global Component Distribution</td>
+                                    <td>55</td>
+                                    <td><span class="probit-badge probit-lh">LH</span></td>
+                                    <td>8.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Specialty / Niche Distribution</td>
+                                    <td>35</td>
+                                    <td><span class="probit-badge probit-ll">LL</span></td>
+                                    <td>4.2%</td>
+                                </tr>
+                                <tr>
+                                    <td>Online Component Marketplaces</td>
+                                    <td>48</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>14.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="distribution">More</button>
+                    </div>
+                </div>
+
+                <!-- Sales Section -->
+                <div class="section" data-stage="sales" data-cr4="45" data-cagr="9.2" data-probit="HL">
+                    <h2 class="section-header">Sales &amp; After-sales: Retail &amp; Service</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>EDA Software &amp; Design Tools</td>
+                                    <td>88</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>12.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Semiconductor Testing &amp; Validation</td>
+                                    <td>62</td>
+                                    <td><span class="probit-badge probit-hl">HL</span></td>
+                                    <td>7.8%</td>
+                                </tr>
+                                <tr>
+                                    <td>Chip Aftermarket &amp; Refurbishment</td>
+                                    <td>28</td>
+                                    <td><span class="probit-badge probit-ll">LL</span></td>
+                                    <td>3.5%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="sales">More</button>
+                    </div>
+                </div>
+
+                <!-- Customer Section -->
+                <div class="section" data-stage="customer" data-cr4="40" data-cagr="11.0" data-probit="HH">
+                    <h2 class="section-header">Customer: End-users &amp; Demand</h2>
+                    <div class="concentration-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Sub-Industry</th>
+                                    <th>CR4 (%)</th>
+                                    <th>ProBIT (E&amp;S)</th>
+                                    <th>CAGR (2023-2025)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Data Centers &amp; AI Infrastructure</td>
+                                    <td>72</td>
+                                    <td><span class="probit-badge probit-hh">HH</span></td>
+                                    <td>18.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Automotive Semiconductors</td>
+                                    <td>48</td>
+                                    <td><span class="probit-badge probit-lh">LH</span></td>
+                                    <td>8.0%</td>
+                                </tr>
+                                <tr>
+                                    <td>Consumer Electronics (Smartphones, PCs)</td>
+                                    <td>55</td>
+                                    <td><span class="probit-badge probit-ll">LL</span></td>
+                                    <td>3.5%</td>
+                                </tr>
+                                <tr>
+                                    <td>Industrial &amp; IoT Devices</td>
+                                    <td>32</td>
+                                    <td><span class="probit-badge probit-lh">LH</span></td>
+                                    <td>6.0%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="more-btn-container">
+                        <button class="more-btn" data-stage="customer">More</button>
+                    </div>
+                </div>
+
+                <div class="data-source">
+                    Data: Company 10-K/10-Q filings, TrendForce, IBISWorld, WSTS, Counterpoint Research, Mordor Intelligence, IPnest (2024-2025). ProBIT: Industry median net margin ~15%; median revenue CAGR ~11%. Estimates marked where applicable.
+                </div>
+            </div>
+
+            <div class="side-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title"></h2>
+                    <button class="close-btn" aria-label="Close panel">&times;</button>
+                </div>
+                <div class="panel-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const stageData = {
+            upstream: {
+                title: 'Upstream: Raw Materials & Components',
+                subindustries: [
+                    {
+                        name: 'Silicon Wafers',
+                        leaders: [
+                            { name: 'Shin-Etsu Chemical', ticker: '4063.T', share: '32%', strengths: ['World\'s largest silicon wafer producer with 300mm dominance', 'Vertically integrated from polysilicon to polished wafers; 28% operating margin'] },
+                            { name: 'SUMCO Corporation', ticker: '3436.T', share: '25%', strengths: ['#2 global wafer supplier with strong TSMC/Samsung relationships', 'Expanding 300mm capacity in Japan with $2.8B investment through 2026'] },
+                            { name: 'SK Siltron (SK Group)', ticker: '000660.KS', share: '15%', strengths: ['Acquired LG Siltron; expanding SiC wafer capacity for power semis', 'Strategic captive supply to SK Hynix memory fabs'] },
+                            { name: 'Siltronic AG', ticker: 'WAF.DE', share: '12%', strengths: ['Premium 300mm wafer specialist with new Singapore mega-fab', 'GlobalWafers acquisition target; strong automotive-grade quality'] }
+                        ],
+                        features: [
+                            { title: 'Extreme Concentration', desc: 'CR4 of 92% makes silicon wafers one of the most oligopolistic segments in semis. Top 5 control 97% of 300mm supply' },
+                            { title: 'Capital Intensity', desc: 'New 300mm wafer fab requires $3-5B investment and 3-4 year construction timeline' },
+                            { title: 'Long-Term Contracts', desc: 'Wafer suppliers sign 3-5 year supply agreements with foundries. Switching costs are extremely high due to qualification requirements' },
+                            { title: 'Cyclical Recovery', desc: 'After 2023 downturn, wafer shipments recovering in 2024-2025 driven by AI and data center demand' }
+                        ],
+                        opportunity: 'Silicon carbide (SiC) wafer demand surging for EV power semiconductors. SiC wafer market growing at 30%+ CAGR through 2030, creating premium pricing opportunities.',
+                        threat: 'Chinese domestic wafer producers (Zing Semiconductor, Ferrotec) gaining share in 200mm and beginning 300mm qualification, pressuring ASPs.',
+                        niche: {
+                            name: 'Wolfspeed Inc.',
+                            ticker: 'WOLF',
+                            share: '3.5%',
+                            cagr: '35%',
+                            margin: '22% (gross)',
+                            strategy: 'World leader in SiC substrates for EVs and power electronics. Building $5B 200mm SiC mega-fab in North Carolina',
+                            valuation: 'EV/Revenue ~4.5x (FY2025E); high capex phase depressing near-term earnings'
+                        }
+                    },
+                    {
+                        name: 'Photoresist Chemicals',
+                        leaders: [
+                            { name: 'JSR Corporation', ticker: 'Private (delisted)', share: '22%', strengths: ['Market leader in advanced lithography photoresists with 22% share in 2024', 'Acquired by JIC for $6.4B; exclusive EUV resist supplier to leading foundries'] },
+                            { name: 'Tokyo Ohka Kogyo (TOK)', ticker: '4186.T', share: '18%', strengths: ['#2 globally with upgraded EUV-compatible photoresist launched 2024', 'Strong sub-5nm resolution and stability; reduced chemical waste in EUV processes'] },
+                            { name: 'Shin-Etsu Chemical', ticker: '4063.T', share: '14%', strengths: ['Diversified chemical giant with premium ArF immersion and EUV resists', 'Deep R&D integration across wafers and materials creating bundled value'] },
+                            { name: 'Fujifilm Holdings', ticker: '4901.T', share: '12%', strengths: ['Advanced materials division leveraging imaging expertise for semiconductor chemicals', 'Strong KrF and ArFi photoresist portfolio serving mature node fabs'] }
+                        ],
+                        features: [
+                            { title: 'Oligopolistic Structure', desc: 'Top 5 companies (JSR, TOK, Shin-Etsu, Fujifilm, Dongjin) control over 50% of the $5.5B advanced photoresist market (2024)' },
+                            { title: 'EUV Growth Driver', desc: 'EUV photoresist market valued at $226M in 2023, projected to reach $1.1B by 2030 (25.4% CAGR) as sub-3nm adoption accelerates' },
+                            { title: 'High Switching Costs', desc: 'Photoresist qualification at a foundry takes 12-18 months. Once qualified, suppliers are locked in for the node lifecycle' },
+                            { title: 'Japan Dominance', desc: 'Japanese companies control ~80% of the global photoresist market, creating geopolitical supply risk' }
+                        ],
+                        opportunity: 'Next-gen EUV high-NA lithography (ASML\'s EXE:5000) requires entirely new resist chemistries. Early movers in high-NA resists will capture premium pricing.',
+                        threat: 'South Korean and Chinese government-backed resist programs (Dongjin Semichem, domestic Chinese startups) aiming to reduce Japan dependency.',
+                        niche: {
+                            name: 'Inpria Corporation (Lam Research)',
+                            ticker: 'LRCX',
+                            share: '2%',
+                            cagr: '45%',
+                            margin: 'Pre-revenue (R&D stage)',
+                            strategy: 'Metal oxide photoresists for EUV enabling higher resolution and sensitivity vs organic resists. Acquired by Lam Research; pilot production with leading foundries',
+                            valuation: 'Embedded within Lam Research ($110B market cap); strategic R&D value'
+                        }
+                    },
+                    {
+                        name: 'Electronic Specialty Gases',
+                        leaders: [
+                            { name: 'Linde plc', ticker: 'LIN', share: '22%', strengths: ['Global leader in ultra-pure bulk and specialty gases for semiconductor fabs', 'SPECTRA lithography gas mixtures enabling DUV/EUV patterning for 20+ years'] },
+                            { name: 'Air Liquide', ticker: 'AI.PA', share: '18%', strengths: ['#2 global electronics gas supplier with on-site generation at major fabs', 'Advanced materials division producing rare gases (Ne, Kr, Xe) for lithography'] },
+                            { name: 'Air Products & Chemicals', ticker: 'APD', share: '14%', strengths: ['Leading specialty gas producer with high-purity delivery systems', 'Strong presence in hydrogen and nitrogen on-site generation for fabs'] },
+                            { name: 'SK Materials', ticker: '036490.KQ', share: '11%', strengths: ['Korea\'s largest specialty gas supplier serving Samsung and SK Hynix fabs', 'Expanding NF3, WF6, and advanced precursor production capacity'] }
+                        ],
+                        features: [
+                            { title: 'Critical Input', desc: 'Gases (silane, ammonia, NF3, WF6) used in etching, deposition, doping, and cleaning. Semiconductor gas market reached $10.9B in 2024' },
+                            { title: 'Purity Requirements', desc: 'Sub-ppb impurity levels required. Ultra-high-purity certification creates significant barriers to entry' },
+                            { title: 'On-Site Model', desc: 'Major gas companies build on-site plants at customer fabs, locking in 15-20 year supply contracts' },
+                            { title: 'Steady Growth', desc: 'Market growing at 6% CAGR to $22.5B by 2034, driven by rising fab complexity and gas consumption per wafer' }
+                        ],
+                        opportunity: 'Advanced node fabs consume 2-3x more specialty gases per wafer than mature nodes. Each new TSMC/Intel mega-fab generates $50-100M in annual gas revenue.',
+                        threat: 'Rare gas supply disruption from Ukraine/Russia conflict (neon) and potential China export controls on critical gases.',
+                        niche: null
+                    },
+                    {
+                        name: 'Semiconductor IP Cores',
+                        leaders: [
+                            { name: 'Arm Limited', ticker: 'ARM', share: '44%', strengths: ['Dominant mobile CPU architecture with 99% smartphone penetration; 26% YoY growth in 2024', 'Expanding into data center (Neoverse) and automotive (SOAFEE) with v9 architecture'] },
+                            { name: 'Synopsys Inc.', ticker: 'SNPS', share: '23%', strengths: ['#1 by IP license revenue (32% share in 2024); 19% CAGR over 2016-2024', 'Broadest IP portfolio: interface (PCIe, USB, DDR), foundation, and processor cores'] },
+                            { name: 'Cadence Design Systems', ticker: 'CDNS', share: '12%', strengths: ['#3 IP licensor with 19% CAGR (2016-2024); strong in Tensilica DSP and verification IP', 'Leading high-speed interface IP (PCIe Gen6, DDR5, HBM3E) for AI/HPC applications'] },
+                            { name: 'Alphawave Semi', ticker: 'AWE.L', share: '5%', strengths: ['Fastest-growing IP company specializing in high-speed connectivity (112G SerDes, UCIe)', 'Critical supplier of chiplet interconnect IP for AI accelerators'] }
+                        ],
+                        features: [
+                            { title: 'High-Margin Model', desc: 'Design IP market reached $8.5B in 2024, growing 20% YoY (all-time high). IP licensing yields 80%+ gross margins' },
+                            { title: 'HPC Dominance', desc: 'Wired interface IP (PCIe, CXL, Ethernet, SerDes) grew 23.5% in 2024, driven by AI hyperscaler demand' },
+                            { title: 'Arm Ecosystem Lock-In', desc: 'Over 200B Arm-based chips shipped to date. ISA lock-in creates massive switching costs for the mobile ecosystem' },
+                            { title: 'RISC-V Disruption', desc: 'Open-source RISC-V gaining traction in IoT and edge AI. SiFive and Andes Technology challenging Arm in low-power segments' }
+                        ],
+                        opportunity: 'Chiplet-era IP demand. UCIe, HBM controller, and die-to-die interconnect IP are essential for next-gen multi-die architectures, creating greenfield growth.',
+                        threat: 'RISC-V adoption eroding Arm\'s monopoly in embedded/IoT. China accelerating RISC-V to reduce Western IP dependency.',
+                        niche: {
+                            name: 'SiFive Inc.',
+                            ticker: 'Private',
+                            share: '1.5%',
+                            cagr: '40%',
+                            margin: '25% (est.)',
+                            strategy: 'Leading commercial RISC-V processor IP provider. Designs adopted by Google, NASA, and multiple Chinese fabs. Positioned as Arm alternative',
+                            valuation: 'Last valued at $2.5B (Series F); backed by Intel Capital, Qualcomm Ventures'
+                        }
+                    }
+                ]
+            },
+            processing: {
+                title: 'Processing: Refining & Conversion',
+                subindustries: [
+                    {
+                        name: 'Wafer Fabrication Equipment',
+                        leaders: [
+                            { name: 'Applied Materials', ticker: 'AMAT', share: '22%', strengths: ['#2 semiconductor equipment company globally; broadest product portfolio in deposition, etch, CMP, and inspection', 'Revenue $27.2B (FY2024); dominant in CVD and PVD deposition across logic and memory'] },
+                            { name: 'Tokyo Electron (TEL)', ticker: '8035.T', share: '16%', strengths: ['#3 globally; leading in coater/developer (photoresist application) and etch tools', 'Strong position in Japanese and Korean fab ecosystems; $18.5B revenue (FY2024)'] },
+                            { name: 'KLA Corporation', ticker: 'KLAC', share: '12%', strengths: ['Dominant in process control and inspection equipment with 50%+ market share in its niche', 'Critical for yield management at advanced nodes; 35%+ operating margins'] },
+                            { name: 'Lam Research', ticker: 'LRCX', share: '14%', strengths: ['45% global market share in etch equipment; critical for 3D NAND stacking', 'Revenue $17.4B (2023); expanding into EUV dry resist and selective etch'] }
+                        ],
+                        features: [
+                            { title: 'Concentrated Oligopoly', desc: 'Top 4 (ASML, AMAT, TEL, Lam) control ~82% of the $110B+ WFE market. High barriers from IP, precision engineering, and customer qualification' },
+                            { title: 'Capex Supercycle', desc: 'Industry capex projected at $185B in 2025 alone, expanding global capacity by 7%. AI/HPC demand driving equipment orders' },
+                            { title: 'China Risk', desc: 'Chinese domestic equipment makers (Naura, AMEC) entering global top-10 for first time, backed by government subsidies' },
+                            { title: 'Recurring Revenue', desc: 'Service and spare parts represent 25-30% of revenue for major equipment makers, providing stability through cycles' }
+                        ],
+                        opportunity: 'Gate-all-around (GAA) transistor adoption at 2nm requires entirely new deposition and etch tools. Equipment intensity per wafer rising 20-30% vs FinFET.',
+                        threat: 'US export controls restricting advanced equipment sales to China. China represents 25-33% of system sales for major equipment makers.',
+                        niche: {
+                            name: 'Onto Innovation',
+                            ticker: 'ONTO',
+                            share: '3%',
+                            cagr: '18%',
+                            margin: '28%',
+                            strategy: 'Specialty process control for advanced packaging (panel-level, 2.5D/3D). Niche leader in overlay metrology and macro-defect inspection',
+                            valuation: 'Market cap ~$8B; P/E ~30x (2025E); benefiting from advanced packaging tailwinds'
+                        }
+                    },
+                    {
+                        name: 'Lithography Systems',
+                        leaders: [
+                            { name: 'ASML Holding', ticker: 'ASML', share: '90%', strengths: ['Sole supplier of EUV lithography systems globally; 90% lithography market share', '#1 semiconductor equipment company in 2025 (3rd consecutive year); revenue grew 17.7% in 2025'] },
+                            { name: 'Canon Inc.', ticker: '7751.T', share: '5%', strengths: ['DUV lithography (KrF/i-line) for mature nodes and specialty applications', 'Nanoimprint lithography (NIL) for memory; cost-effective alternative for specific layers'] },
+                            { name: 'Nikon Corporation', ticker: '7731.T', share: '4%', strengths: ['DUV immersion scanners for mature and mid-range nodes', 'Legacy installed base in 193nm lithography at Samsung and other Asian fabs'] }
+                        ],
+                        features: [
+                            { title: 'Near-Monopoly', desc: 'ASML is the ONLY company producing EUV systems ($380M+ per tool). CR4 is effectively 98%+ with ASML at 90% of total lithography' },
+                            { title: 'EUV Dominance', desc: 'EUV contributed 51% of ASML system sales in 2025. High-NA EUV (EXE:5000) shipping for 2nm/1.4nm nodes at $380M+ per system' },
+                            { title: 'Geopolitical Leverage', desc: 'Netherlands export controls restrict EUV sales to China. ASML is a critical chokepoint in the global semiconductor supply chain' },
+                            { title: 'Massive Backlog', desc: 'ASML backlog exceeds $30B, providing multi-year revenue visibility as foundries expand advanced node capacity' }
+                        ],
+                        opportunity: 'High-NA EUV adoption for sub-2nm nodes. Each system costs $380M+, potentially doubling ASML\'s revenue per tool vs standard EUV.',
+                        threat: 'China developing domestic DUV alternatives (Shanghai Micro Electronics Equipment/SMEE). While years behind, government funding is accelerating development.',
+                        niche: null
+                    },
+                    {
+                        name: 'Etch & Deposition Equipment',
+                        leaders: [
+                            { name: 'Lam Research', ticker: 'LRCX', share: '45%', strengths: ['Undisputed leader in etch equipment with 45% global market share', 'Critical for 3D NAND (200+ layer stacking) and advanced logic etch processes'] },
+                            { name: 'Applied Materials', ticker: 'AMAT', share: '22%', strengths: ['Dominant in chemical vapor deposition (CVD) and physical vapor deposition (PVD)', 'Broadest deposition portfolio covering ALD, CVD, PVD, and ECD processes'] },
+                            { name: 'Tokyo Electron', ticker: '8035.T', share: '18%', strengths: ['Strong #2 in etch; leading in coater/developer equipment for photoresist processing', 'Growing share in ALD (atomic layer deposition) for advanced logic'] },
+                            { name: 'ASM International', ticker: 'ASM.AS', share: '12%', strengths: ['ALD technology leader; critical for gate-all-around (GAA) transistor fabrication', 'Revenue growing 25%+ as ALD content per wafer rises at advanced nodes'] }
+                        ],
+                        features: [
+                            { title: 'Process Complexity', desc: 'Advanced nodes require 50-80 etch steps and 30-50 deposition steps per wafer, up from 20-30 each at mature nodes' },
+                            { title: 'Memory Tailwind', desc: '3D NAND scaling to 200-300 layers creates massive etch demand. Each additional tier requires incremental etch capacity' },
+                            { title: 'ALD Inflection', desc: 'Atomic layer deposition growing fastest at 15%+ CAGR as GAA and advanced DRAM require atomically precise film control' },
+                            { title: 'Margin Profile', desc: 'Equipment makers generate 45-60% gross margins with high operating leverage. Lam and AMAT both exceed 30% operating margin' }
+                        ],
+                        opportunity: 'Selective etch and selective deposition for self-aligned patterning at sub-2nm. Reduces EUV exposure steps, saving fabs $100M+ per year.',
+                        threat: 'Chinese etch equipment maker AMEC achieving parity in mature node tools. Risk of commoditization in legacy etch segments.',
+                        niche: {
+                            name: 'ASM International',
+                            ticker: 'ASM.AS',
+                            share: '4.5%',
+                            cagr: '25%',
+                            margin: '32%',
+                            strategy: 'Pure-play ALD leader positioned at inflection point as GAA transistors require atomic-precision deposition. Revenue doubling from 2022 to 2025',
+                            valuation: 'Market cap ~$30B; P/E ~40x reflecting premium ALD growth positioning'
+                        }
+                    },
+                    {
+                        name: 'Wafer Foundry Services',
+                        leaders: [
+                            { name: 'TSMC', ticker: 'TSM', share: '64%', strengths: ['World\'s largest foundry with 64% revenue share; sole volume producer of 3nm chips', 'Revenue $87.1B (2024); AI/HPC driving advanced node utilization above 95%'] },
+                            { name: 'Samsung Foundry', ticker: '005930.KS', share: '12%', strengths: ['#2 foundry with 3nm GAA production; integrated with memory expertise', 'Won Tesla contract; aggressively pursuing Qualcomm and Google custom silicon'] },
+                            { name: 'GlobalFoundries', ticker: 'GFS', share: '6%', strengths: ['Leading specialty foundry for automotive, IoT, and RF applications at 12nm+', 'Revenue $7.4B (2024); Malta, Dresden, Singapore fabs serving defense and auto'] },
+                            { name: 'Intel Foundry', ticker: 'INTC', share: '8%', strengths: ['18A (1.8nm) node launching 2025 with backside power delivery', '$100B+ investment in US fab expansion (Arizona, Ohio, New Mexico)'] }
+                        ],
+                        features: [
+                            { title: 'TSMC Dominance', desc: 'TSMC manufactures 90%+ of the world\'s most advanced chips (<7nm). Apple, Nvidia, AMD, and Qualcomm all depend on TSMC' },
+                            { title: 'Geopolitical Flashpoint', desc: 'Taiwan concentration creates strategic vulnerability. US CHIPS Act ($52B) and EU Chips Act funding geographic diversification' },
+                            { title: 'Capex Arms Race', desc: 'TSMC alone spending $30-36B annually on capex. Samsung and Intel each investing $20B+ to close the technology gap' },
+                            { title: 'Advanced Node Premium', desc: '3nm wafer price ~$20,000+ vs $3,000 for 28nm. Advanced nodes capture disproportionate revenue despite lower wafer volumes' }
+                        ],
+                        opportunity: 'US/Europe reshoring creating multi-decade fab construction cycle. Arizona, Germany, Japan TSMC fabs + Intel Ohio generating $200B+ in equipment and materials demand.',
+                        threat: 'Foundry overcapacity at mature nodes (28nm+) driving price wars. China adding massive 28nm capacity that may depress legacy node pricing.',
+                        niche: {
+                            name: 'Tower Semiconductor',
+                            ticker: 'TSEM',
+                            share: '1.5%',
+                            cagr: '15%',
+                            margin: '24%',
+                            strategy: 'Specialty analog foundry for power management, RF, and image sensors. High-margin niche avoiding advanced node capex arms race',
+                            valuation: 'Market cap ~$6B; P/E ~18x; Intel partnership for specialty capacity'
+                        }
+                    }
+                ]
+            },
+            manufacturing: {
+                title: 'Manufacturing: Assembly & Production',
+                subindustries: [
+                    {
+                        name: 'OSAT (Packaging & Test)',
+                        leaders: [
+                            { name: 'ASE Technology Holding', ticker: '3711.TW', share: '44.6%', strengths: ['World\'s largest OSAT with 44.6% market share in 2024; revenue $18.54B', 'Leading in advanced packaging (2.5D interposer, FOCoS, FO-WLP, SiP) for HPC and AI chips'] },
+                            { name: 'Amkor Technology', ticker: 'AMKR', share: '15.2%', strengths: ['#2 OSAT globally with 15.2% share (2024); expanding Arizona facility for US reshoring', 'Joint project with GlobalFoundries in Portugal targeting European automakers'] },
+                            { name: 'JCET Group', ticker: '600584.SS', share: '12%', strengths: ['#3 globally with 12% share and record 2024 revenue; 19.3% YoY growth', 'Expanding SiP capacity in Jiangsu; deepening automotive engagements'] },
+                            { name: 'Tongfu Microelectronics', ticker: '002156.SZ', share: '8%', strengths: ['#4 OSAT; AMD\'s primary Chinese packaging partner for server CPUs', 'Rapid growth in advanced flip-chip and FCBGA packaging'] }
+                        ],
+                        features: [
+                            { title: 'Moderate Concentration', desc: 'Top 3 (ASE, Amkor, JCET) held 45-50% of $51B OSAT market in 2024. Market growing at 8.56% CAGR to $77B by 2031' },
+                            { title: 'Advanced Packaging Shift', desc: '2.5D/3D integration, TSV, and SiP driving higher ASPs. AI accelerators require CoWoS-type advanced packages' },
+                            { title: 'Regional Diversification', desc: 'OSATs expanding beyond Taiwan/China to Arizona, Portugal, Mexico, and Southeast Asia for supply chain resilience' },
+                            { title: 'Communication Dominance', desc: 'Communication systems dominated OSAT revenue at 32.1% in 2025; automotive growing fastest at 12.85% CAGR' }
+                        ],
+                        opportunity: 'AI-driven advanced packaging demand. CoWoS and InFO packaging capacity constrained; ASE and Amkor investing heavily to capture overflow from TSMC.',
+                        threat: 'TSMC vertically integrating into advanced packaging (CoWoS, InFO), reducing outsourcing to independent OSATs for highest-value AI chip packages.',
+                        niche: {
+                            name: 'Hana Micron',
+                            ticker: '067310.KQ',
+                            share: '2.2%',
+                            cagr: '22%',
+                            margin: '21%',
+                            strategy: 'Korean OSAT specializing in HBM memory packaging for SK Hynix. Direct beneficiary of AI memory boom with dedicated HBM assembly lines',
+                            valuation: 'Market cap ~$1.8B; P/E ~15x; riding SK Hynix HBM capacity expansion'
+                        }
+                    },
+                    {
+                        name: 'Memory Chips (DRAM & NAND)',
+                        leaders: [
+                            { name: 'SK Hynix', ticker: '000660.KS', share: '36%', strengths: ['Overtook Samsung in DRAM revenue in Q1 2025 (36% share) for first time since 1992', 'Dominates HBM market with 62%+ share; exclusive Nvidia HBM supplier; 2025 profit 47T won'] },
+                            { name: 'Samsung Electronics', ticker: '005930.KS', share: '34%', strengths: ['34% DRAM share (Q1 2025); #1 in NAND with 33% share; diversified across memory types', '24.9T won memory operating profit (2025); ramping HBM4 for Nvidia Rubin platform'] },
+                            { name: 'Micron Technology', ticker: 'MU', share: '25%', strengths: ['25% DRAM market share; 21% HBM share and growing with HBM3E qualification at Nvidia', 'Revenue ~$25B (FY2024); Idaho and India fab expansions for HBM and advanced DRAM'] },
+                            { name: 'Kioxia/WDC', ticker: '6600.T / WDC', share: '5% (NAND)', strengths: ['Combined NAND flash share ~30%; Kioxia IPO completed 2024', 'BiCS FLASH 3D NAND technology at 200+ layers; enterprise SSD growing rapidly'] }
+                        ],
+                        features: [
+                            { title: 'Ultra-Concentrated', desc: 'Three companies (Samsung, SK Hynix, Micron) control 95% of DRAM and 90%+ of NAND revenue globally' },
+                            { title: 'HBM Supercycle', desc: 'High Bandwidth Memory for AI GPUs growing 100%+ annually. HBM market ~$25B in 2025; SK Hynix commands 62% share' },
+                            { title: 'Memory Price Recovery', desc: 'DRAM ASPs surging 20-30% YoY in 2025 driven by AI server demand and disciplined supply management' },
+                            { title: 'Capex Concentration', desc: 'Samsung, SK Hynix, and Micron investing combined $70B+ in memory capex (2024-2025) primarily for HBM and DDR5' }
+                        ],
+                        opportunity: 'HBM4 and HBM4E for next-gen AI platforms (Nvidia Rubin, AMD MI400). Each HBM stack sells for 5-10x the price of standard DRAM, massively expanding TAM.',
+                        threat: 'Chinese memory players (CXMT, YMTC) gaining share in legacy DRAM and NAND. Risk of oversupply in commodity memory segments if AI demand plateaus.',
+                        niche: null
+                    },
+                    {
+                        name: 'Fabless IC Design (Logic)',
+                        leaders: [
+                            { name: 'Nvidia', ticker: 'NVDA', share: '50%', strengths: ['50% of top-10 fabless revenue in 2024 ($124.4B, +125% YoY); AI GPU monopoly', 'GB200/GB300 GPUs and CUDA ecosystem create massive moat in AI training and inference'] },
+                            { name: 'Broadcom', ticker: 'AVGO', share: '12%', strengths: ['$30.64B semiconductor revenue (2024, +8% YoY); AI chips now 30%+ of semi sales', 'Custom ASIC design for Google (TPU), Meta, and Apple networking chips'] },
+                            { name: 'Qualcomm', ticker: 'QCOM', share: '14%', strengths: ['QCT division $34.86B revenue (2024, +13% YoY); dominates mobile SoCs', 'Snapdragon X Elite for AI PCs; expanding into automotive and edge AI'] },
+                            { name: 'AMD', ticker: 'AMD', share: '10%', strengths: ['$25.8B revenue (2024); MI300X AI accelerators gaining data center share', 'EPYC server CPUs taking share from Intel; partnerships with Dell, Microsoft, Google for AI PCs'] }
+                        ],
+                        features: [
+                            { title: 'Nvidia Dominance', desc: 'Nvidia\'s 2024 revenue equals the other 9 top-10 fabless companies combined. AI GPU TAM expanding from $50B to $200B+ by 2027' },
+                            { title: 'Custom Silicon Wave', desc: 'Hyperscalers (Google, Amazon, Meta, Microsoft) designing custom AI chips, creating $15B+ custom ASIC opportunity by 2027' },
+                            { title: 'AI PC Opportunity', desc: 'On-device AI requiring NPU-equipped SoCs. Qualcomm, AMD, and Intel competing for AI PC socket; 50M+ AI PCs shipped in 2025' },
+                            { title: 'Fabless Model Advantages', desc: 'Fabless companies achieve 60-75% gross margins by outsourcing manufacturing. R&D intensity 20-30% of revenue' }
+                        ],
+                        opportunity: 'AI inference at the edge (smartphones, vehicles, IoT) creates new chip demand beyond data centers. On-device AI market growing 30%+ CAGR.',
+                        threat: 'Customer concentration risk. Nvidia\'s top 5 customers (hyperscalers) represent 40%+ of revenue. Custom ASICs may displace merchant GPUs.',
+                        niche: {
+                            name: 'Monolithic Power Systems',
+                            ticker: 'MPWR',
+                            share: '~1%',
+                            cagr: '21%',
+                            margin: '56% (gross)',
+                            strategy: 'PMICs entering AI server supply chain driving exponential growth in enterprise data division. Revenue $2.2B (2024, +21% YoY)',
+                            valuation: 'Market cap ~$35B; P/E ~55x reflecting premium AI power management positioning'
+                        }
+                    },
+                    {
+                        name: 'Analog & Mixed-Signal ICs',
+                        leaders: [
+                            { name: 'Texas Instruments', ticker: 'TXN', share: '19%', strengths: ['Largest analog IC company globally with 80,000+ product SKUs across industrial and automotive', 'Investing $30B+ in 300mm analog fabs (Sherman, Lehi) for structural cost advantage'] },
+                            { name: 'Analog Devices', ticker: 'ADI', share: '14%', strengths: ['Premium mixed-signal and data converter leader; 64% gross margin', 'Strong in precision signal chain for industrial, automotive, and healthcare'] },
+                            { name: 'Infineon Technologies', ticker: 'IFX.DE', share: '11%', strengths: ['#1 in automotive semiconductors (power, MCU, sensors); 29% auto semi market share', 'SiC MOSFET leadership for EVs; revenue $16.3B (FY2024)'] },
+                            { name: 'STMicroelectronics', ticker: 'STM', share: '8%', strengths: ['Diversified analog/mixed-signal with automotive and industrial strength', 'SiC revenue $1.2B+ (2024); exclusive Tesla SiC inverter supplier'] }
+                        ],
+                        features: [
+                            { title: 'Fragmented Market', desc: 'CR4 ~52% in analog ICs. Market highly fragmented with long tail of specialty analog suppliers' },
+                            { title: 'Inventory Correction', desc: 'Industrial and automotive inventory overhang from 2023-2024 weighing on near-term growth. Recovery expected H2 2025' },
+                            { title: 'Long Product Lifecycles', desc: 'Analog chips have 10-15 year lifecycles vs 2-3 years for digital. Annuity-like revenue streams once designed in' },
+                            { title: 'Automotive Tailwind', desc: 'EV semiconductor content $800-1,200 per vehicle vs $400-500 for ICE. Power management and SiC growing fastest' }
+                        ],
+                        opportunity: 'EV power semiconductor demand (SiC, GaN, IGBTs) growing at 30% CAGR. Automotive semiconductor market projected to reach $102B by 2034.',
+                        threat: 'Chinese analog IC makers (Will Semiconductor, Silergy) gaining share in consumer and industrial with 30-40% price discounts.',
+                        niche: {
+                            name: 'Will Semiconductor (OMNIVISION)',
+                            ticker: '603501.SS',
+                            share: '4%',
+                            cagr: '21%',
+                            margin: '22%',
+                            strategy: 'Revenue $3.0B (2024, +21% YoY); expanding CMOS image sensor share in Android phones and EV autonomous driving',
+                            valuation: 'Market cap ~$15B; P/E ~25x; leveraging Chinese EV penetration'
+                        }
+                    }
+                ]
+            },
+            distribution: {
+                title: 'Distribution: Logistics & Wholesale',
+                subindustries: [
+                    {
+                        name: 'Global Component Distribution',
+                        leaders: [
+                            { name: 'WT Microelectronics', ticker: '3036.TW', share: '18%', strengths: ['#1 global distributor after acquiring Future Electronics; revenue ~$27.7B (2024, +31% YoY)', 'Dominates Asia-Pacific with deep TSMC ecosystem integration and AI/auto chip access'] },
+                            { name: 'WPG Holdings', ticker: '3702.TW', share: '20%', strengths: ['$30.17B revenue (2024, +61.4% YoY); largest semiconductor distributor by revenue', 'Seven subsidiary brands covering 250+ semiconductor suppliers across Asia'] },
+                            { name: 'Arrow Electronics', ticker: 'ARW', share: '10%', strengths: ['$7.6B quarterly revenue (Q2 2025, +10% YoY); Americas and Europe strength', 'Engineering design services and supply chain solutions differentiating from pure distribution'] },
+                            { name: 'Avnet Inc.', ticker: 'AVT', share: '9%', strengths: ['Global distribution with value-added design and supply chain services', 'Stronger in industrial and automotive semiconductor distribution in Western markets'] }
+                        ],
+                        features: [
+                            { title: 'Taiwan Shift', desc: 'WPG and WT Microelectronics overtook Arrow and Avnet in 2024, reflecting Asia-Pacific semiconductor production concentration' },
+                            { title: 'Margin Pressure', desc: 'Distribution gross margins 8-12% compressed by direct OEM relationships and e-commerce competition' },
+                            { title: 'Consolidation Wave', desc: 'WT Micro acquiring Future Electronics; ongoing M&A reshaping top-10 landscape' },
+                            { title: 'Inventory Dynamics', desc: 'Distributors managing $40B+ in semiconductor inventory globally; excess inventory in industrial/auto correcting through 2025' }
+                        ],
+                        opportunity: 'AI and automotive semiconductor demand creating new design-win opportunities. Distributors adding value through technical design support and demand creation.',
+                        threat: 'OEM direct purchasing programs and manufacturer-direct e-commerce reducing traditional distribution volume. TI exiting broad distribution partners.',
+                        niche: null
+                    },
+                    {
+                        name: 'Specialty / Niche Distribution',
+                        leaders: [
+                            { name: 'TTI Inc. (Berkshire Hathaway)', ticker: 'BRK.B', share: '12%', strengths: ['Leading passive component distributor (capacitors, resistors, connectors)', 'Buffett-owned; patient inventory model enabling superior fill rates'] },
+                            { name: 'Macnica Holdings', ticker: '3132.T', share: '10%', strengths: ['Japanese specialty distributor with $8B+ revenue; strong in automotive and industrial', 'Technical sales force with deep application expertise differentiating from commodity distributors'] },
+                            { name: 'Smith & Associates', ticker: 'Private', share: '8%', strengths: ['Independent distributor specializing in hard-to-find and obsolete components', 'Critical supply chain role during chip shortages; spot market pricing expertise'] },
+                            { name: 'N.F. Smith', ticker: 'Private', share: '5%', strengths: ['Specialty distributor focused on excess inventory management', 'Global network for sourcing rare and end-of-life semiconductor components'] }
+                        ],
+                        features: [
+                            { title: 'Fragmented', desc: 'CR4 ~35% in specialty distribution. Hundreds of regional and niche players serve long-tail demand' },
+                            { title: 'Spot Market', desc: 'Independent distributors handle 10-15% of total semiconductor distribution through spot and broker channels' },
+                            { title: 'Obsolescence Management', desc: 'As product lifecycles shorten, demand for last-time-buy and aftermarket semiconductor supply grows' },
+                            { title: 'Low Margins', desc: 'Specialty distributors earn 5-8% gross margins on commodity parts but 15-25% on hard-to-find components' }
+                        ],
+                        opportunity: 'Supply chain resilience programs post-COVID driving buffer stock investment. Companies willing to pay premium for guaranteed supply.',
+                        threat: 'Counterfeit component risk in independent distribution. Authentication costs rising as chips become smaller and harder to verify.',
+                        niche: null
+                    },
+                    {
+                        name: 'Online Component Marketplaces',
+                        leaders: [
+                            { name: 'Digi-Key Electronics', ticker: 'Private', share: '22%', strengths: ['Largest online component distributor with 14.8M+ SKUs in stock', 'Same-day shipping and no minimum order quantities; $6B+ revenue (est. 2024)'] },
+                            { name: 'Mouser Electronics (Berkshire)', ticker: 'BRK.B', share: '16%', strengths: ['#2 online distributor with industry-leading new product introduction speed', 'Automated mega-warehouse in Dallas handling 60,000+ orders/day'] },
+                            { name: 'RS Group (Electrocomponents)', ticker: 'RS1.L', share: '6%', strengths: ['European-focused online distributor with 750K+ products from 2,500+ suppliers', 'Industrial and MRO focus differentiating from pure semiconductor distributors'] },
+                            { name: 'LCSC Electronics', ticker: 'Private', share: '4%', strengths: ['China\'s largest online component marketplace with aggressive pricing', 'Integrated with JLCPCB for board-level assembly, creating one-stop hardware development platform'] }
+                        ],
+                        features: [
+                            { title: 'High Growth', desc: 'Online component distribution growing at 14-15% CAGR as prototyping and small-batch production migrate online' },
+                            { title: 'Catalog Scale', desc: 'Digi-Key and Mouser each stock millions of unique SKUs from thousands of suppliers, impossible for traditional distributors to match' },
+                            { title: 'Design Engineer Access', desc: 'Online marketplaces capture demand at the design stage. Engineers selecting components online drives future production orders' },
+                            { title: 'Automation Advantage', desc: 'Highly automated fulfillment centers enable profitability at low order values ($25-100 average order)' }
+                        ],
+                        opportunity: 'AI-powered design tools recommending components at schematic stage. BOM optimization algorithms integrating with online catalogs to drive intelligent procurement.',
+                        threat: 'Amazon Business and Alibaba exploring industrial component distribution, potentially disrupting specialist platforms with logistics scale.',
+                        niche: {
+                            name: 'LCSC Electronics',
+                            ticker: 'Private',
+                            share: '4%',
+                            cagr: '30%',
+                            margin: '22%',
+                            strategy: 'Integrated JLCPCB+LCSC ecosystem creating full-stack hardware development platform. Captures design-to-prototype pipeline in China and expanding globally',
+                            valuation: 'Private; est. revenue $800M-1B; backed by Sequoia China'
+                        }
+                    }
+                ]
+            },
+            sales: {
+                title: 'Sales & After-sales: Retail & Service',
+                subindustries: [
+                    {
+                        name: 'EDA Software & Design Tools',
+                        leaders: [
+                            { name: 'Synopsys Inc.', ticker: 'SNPS', share: '35%', strengths: ['#1 EDA company globally with 35% market share; revenue $6.1B (FY2024, +15% YoY)', 'Full-stack: design, verification, IP, and AI-driven optimization (Synopsys.ai)'] },
+                            { name: 'Cadence Design Systems', ticker: 'CDNS', share: '30%', strengths: ['#2 EDA with ~30% share; revenue $4.1B (FY2024); industry-leading simulation tools', 'Expanding into system design and molecular simulation (OpenEye acquisition)'] },
+                            { name: 'Siemens EDA (Mentor)', ticker: 'SIE.DE', share: '15%', strengths: ['#3 EDA integrated into Siemens digital industries portfolio', 'PCB design (Xpedition) and IC packaging leadership; strong automotive electronics focus'] },
+                            { name: 'Ansys (Synopsys acquisition)', ticker: 'SNPS', share: '8%', strengths: ['Multi-physics simulation for semiconductor thermal and reliability analysis', '$35B acquisition by Synopsys creating design-to-simulation mega-platform'] }
+                        ],
+                        features: [
+                            { title: 'Duopoly Structure', desc: 'Synopsys and Cadence control 65% of the EDA market. Combined with Siemens EDA, CR3 is ~80%. Near-zero probability of new entrants' },
+                            { title: 'Subscription Model', desc: '90%+ of EDA revenue is recurring (time-based licenses and maintenance). Retention rates exceed 95%' },
+                            { title: 'AI Integration', desc: 'AI-driven EDA (Synopsys.ai, Cadence Cerebrus) reducing chip design cycles by 3-10x for specific tasks. Margin expansion opportunity' },
+                            { title: 'Design Complexity', desc: 'Advanced SoCs contain 50-100B transistors requiring $500M-1B in design costs. Only EDA tools can manage this complexity' }
+                        ],
+                        opportunity: 'Generative AI for chip design. AI-assisted placement, routing, and verification could reduce design time by 30-50%, expanding addressable market to more chip designers.',
+                        threat: 'Open-source EDA tools (OpenROAD, Yosys) gaining academic traction. Google-backed open-source EDA could democratize chip design for simpler chips.',
+                        niche: null
+                    },
+                    {
+                        name: 'Semiconductor Testing & Validation',
+                        leaders: [
+                            { name: 'Teradyne', ticker: 'TER', share: '28%', strengths: ['#1 in automatic test equipment (ATE) for semiconductors with 28% market share', 'UltraFlex and J750 platforms dominating mobile SoC, HPC, and automotive testing'] },
+                            { name: 'Advantest', ticker: '6857.T', share: '24%', strengths: ['#2 ATE company; dominant in memory testing (80%+ market share in DRAM/NAND test)', 'V93000 platform critical for HBM testing; direct beneficiary of AI memory boom'] },
+                            { name: 'Cohu Inc.', ticker: 'COHU', share: '6%', strengths: ['Leading in semiconductor handlers and contactors; test interface specialist', 'Complementary to ATE providers; strong in automotive and industrial test'] },
+                            { name: 'National Instruments (Emerson)', ticker: 'EMR', share: '4%', strengths: ['Modular test and measurement platforms for semiconductor validation', 'PXI-based test systems for mixed-signal and RF semiconductor characterization'] }
+                        ],
+                        features: [
+                            { title: 'Duopoly in ATE', desc: 'Teradyne and Advantest together control 52%+ of the ATE market. Memory test is even more concentrated (Advantest 80%)' },
+                            { title: 'HBM Testing Boom', desc: 'Each HBM stack requires extensive testing. Advantest V93000 demand surging as HBM production scales 100%+ annually' },
+                            { title: 'Test Cost Rising', desc: 'Advanced chips require longer test times and more parallel testing. Test cost as % of chip cost rising from 5% to 8-10%' },
+                            { title: 'Recurring Services', desc: 'Post-sale services (calibration, maintenance, software updates) represent 25-30% of tester company revenue' }
+                        ],
+                        opportunity: 'AI-driven adaptive testing could reduce test times by 20-30% while improving fault coverage. Machine learning applied to test data analytics.',
+                        threat: 'Chipmakers internalizing test capability. TSMC and Samsung expanding in-house testing for advanced packages, reducing outsourced test demand.',
+                        niche: {
+                            name: 'FormFactor Inc.',
+                            ticker: 'FORM',
+                            share: '3.5%',
+                            cagr: '18%',
+                            margin: '24%',
+                            strategy: 'Probe card leader for wafer-level testing. Critical interface between ATE and wafer; 65%+ market share in advanced probe cards for HBM and advanced logic',
+                            valuation: 'Market cap ~$4B; P/E ~28x; HBM probe card demand driving accelerating growth'
+                        }
+                    },
+                    {
+                        name: 'Chip Aftermarket & Refurbishment',
+                        leaders: [
+                            { name: 'Rochester Electronics', ticker: 'Private', share: '15%', strengths: ['Licensed aftermarket semiconductor supplier with authorized access to 70+ OEM lines', 'End-of-life chip manufacturing capability extending product availability 20+ years'] },
+                            { name: 'Lansdale Semiconductor', ticker: 'Private', share: '8%', strengths: ['Authorized aftermarket manufacturer of legacy Motorola, ON Semi, and Fairchild devices', 'Wafer bank with 10,000+ die types for mil-spec and aerospace applications'] },
+                            { name: 'Microchip Technology', ticker: 'MCHP', share: '5% (aftermarket)', strengths: ['Long product lifecycle commitment; does not discontinue products aggressively', 'Serves defense, aerospace, and industrial customers requiring 15-20 year supply assurance'] }
+                        ],
+                        features: [
+                            { title: 'Fragmented Market', desc: 'CR4 ~28%; highly fragmented with many small brokers and aftermarket suppliers' },
+                            { title: 'Defense Critical', desc: 'Military and aerospace systems require DMEA-qualified replacement semiconductors for 30+ year platform lifecycles' },
+                            { title: 'Counterfeit Risk', desc: 'Aftermarket chips face significant counterfeit risk. AS6171/AS6081 testing standards required by defense customers' },
+                            { title: 'Niche Premiums', desc: 'Obsolete chips command 10-100x original pricing when supply is scarce and redesign costs are prohibitive' }
+                        ],
+                        opportunity: 'Increasing semiconductor content per system means more EOL management demand. IoT and automotive long-lifecycle products driving aftermarket growth.',
+                        threat: 'Chip redesign becoming easier with modern EDA tools. FPGA-based replacement reducing demand for exact legacy chip replacements.',
+                        niche: null
+                    }
+                ]
+            },
+            customer: {
+                title: 'Customer: End-users & Demand',
+                subindustries: [
+                    {
+                        name: 'Data Centers & AI Infrastructure',
+                        leaders: [
+                            { name: 'Amazon Web Services', ticker: 'AMZN', share: '32%', strengths: ['#1 cloud provider with 32% market share; $110B+ annual run-rate', 'Custom Graviton CPUs and Trainium AI chips reducing Nvidia dependency; massive GPU buyer'] },
+                            { name: 'Microsoft Azure', ticker: 'MSFT', share: '23%', strengths: ['#2 cloud with 23% share; $60B+ annual cloud revenue growing 30%+', 'Maia AI accelerator and Cobalt CPU in development; largest Nvidia GPU customer for OpenAI training'] },
+                            { name: 'Google Cloud', ticker: 'GOOGL', share: '12%', strengths: ['#3 cloud at 12% share; TPU v5 custom AI accelerators deployed at scale', 'Axion Arm-based CPUs; $7B+ quarterly capex primarily on AI infrastructure'] },
+                            { name: 'Meta Platforms', ticker: 'META', share: '8% (private infra)', strengths: ['$37-40B capex budget (2025) primarily for AI data center GPU clusters', 'MTIA custom AI inference chip reducing Nvidia reliance; open-source Llama driving AI infra demand'] }
+                        ],
+                        features: [
+                            { title: 'Semiconductor TAM Driver', desc: 'Data center semiconductor market $156B in 2025, projected $361B by 2030 (18% CAGR). Largest and fastest-growing end market' },
+                            { title: 'GPU Demand', desc: 'Hyperscalers collectively spending $200B+ on capex in 2025, with 60-70% allocated to AI compute (GPUs, HBM, networking)' },
+                            { title: 'Custom Silicon Trend', desc: 'Each major hyperscaler developing custom chips: AWS Graviton/Trainium, Google TPU, Meta MTIA, Microsoft Maia' },
+                            { title: 'Power Challenge', desc: 'AI data centers consuming 1-5 GW per facility. Power management semiconductors (GaN, SiC) critical enabling technology' }
+                        ],
+                        opportunity: 'Sovereign AI: nations building domestic AI infrastructure. $100B+ in non-US government-backed AI compute investments through 2028.',
+                        threat: 'AI model efficiency improvements (DeepSeek-style) could reduce compute requirements per workload, slowing GPU demand growth.',
+                        niche: {
+                            name: 'CoreWeave',
+                            ticker: 'CRWV',
+                            share: '2%',
+                            cagr: '200%+',
+                            margin: '15% (improving)',
+                            strategy: 'GPU-cloud-as-a-service with 250,000+ Nvidia GPUs. IPO in 2025 at $23B valuation. Primary GPU cloud for AI startups lacking hyperscaler access',
+                            valuation: 'IPO at $23B; revenue growing from $1.9B to est. $8B+ in 2025; capital-intensive model'
+                        }
+                    },
+                    {
+                        name: 'Automotive Semiconductors',
+                        leaders: [
+                            { name: 'Infineon Technologies', ticker: 'IFX.DE', share: '14%', strengths: ['#1 automotive semiconductor company globally with 14% share; $6.5B auto revenue', 'SiC MOSFET and IGBT leadership for EV powertrains; AURIX MCU platform dominant in ADAS'] },
+                            { name: 'NXP Semiconductors', ticker: 'NXPI', share: '12%', strengths: ['#2 auto semi with $7.2B automotive revenue (2024); S32 vehicle networking platform', 'Radar, V2X communication, and secure vehicle gateway chips for software-defined vehicles'] },
+                            { name: 'Texas Instruments', ticker: 'TXN', share: '8%', strengths: ['Broad analog portfolio serving every automotive subsystem (power, signal chain, interface)', '300mm analog fab cost advantage enabling aggressive automotive pricing'] },
+                            { name: 'Renesas Electronics', ticker: '6723.T', share: '8%', strengths: ['Leading automotive MCU supplier with 30% global auto MCU share', 'R-Car SoC for cockpit and ADAS; acquisitions of Dialog and Intersil expanding auto portfolio'] }
+                        ],
+                        features: [
+                            { title: 'Market Size', desc: 'Global automotive semiconductor market ~$51B in 2025, projected $102B by 2034 (8% CAGR)' },
+                            { title: 'EV Content Growth', desc: 'EV semiconductor content $800-1,200/vehicle vs $400-500 for ICE. Power semis (SiC, IGBT) driving content increase' },
+                            { title: 'ADAS Expansion', desc: 'L2+ autonomous driving requiring 5-10 SoCs, radar/lidar chips, and sensor fusion processors per vehicle' },
+                            { title: 'Inventory Normalization', desc: 'Automotive inventory overhang from 2023-2024 correction. Growth resuming H2 2025 driven by EV and ADAS demand' }
+                        ],
+                        opportunity: 'EV semiconductor devices market growing at 30% CAGR through 2030. Vehicle-to-everything (V2X) communication requiring specialized low-latency chips.',
+                        threat: 'EV demand uncertainty and potential regulatory delays impacting chip demand. Chinese EV price war compressing auto OEM margins and chip budgets.',
+                        niche: {
+                            name: 'Mobileye',
+                            ticker: 'MBLY',
+                            share: '4%',
+                            cagr: '18%',
+                            margin: '48% (gross)',
+                            strategy: 'ADAS/autonomous driving SoC leader with EyeQ6 platform. Dominant in L2 ADAS with 50M+ vehicles shipped; transitioning to SuperVision L2+ system',
+                            valuation: 'Market cap ~$14B; P/E ~45x (2025E); IPO from Intel at $17B valuation'
+                        }
+                    },
+                    {
+                        name: 'Consumer Electronics (Smartphones, PCs)',
+                        leaders: [
+                            { name: 'Apple', ticker: 'AAPL', share: '22%', strengths: ['Largest semiconductor buyer globally; A-series/M-series custom silicon driving industry R&D', '1.2B+ active iPhones driving annual 200M+ AP, modem, and sensor chip demand'] },
+                            { name: 'Samsung Electronics', ticker: '005930.KS', share: '18%', strengths: ['#2 smartphone maker with Exynos SoC and massive component purchase volume', 'Galaxy S series driving premium AP demand; also major OLED and memory buyer'] },
+                            { name: 'Xiaomi', ticker: '1810.HK', share: '8%', strengths: ['#3 smartphone brand with 14%+ global share; driving mid-range Qualcomm/MediaTek demand', 'Expanding into EVs and IoT ecosystem, broadening semiconductor procurement'] },
+                            { name: 'Lenovo / HP', ticker: 'LNVGY / HPQ', share: '12% (PC)', strengths: ['Top 2 PC OEMs collectively purchasing $30B+ in semiconductors annually', 'AI PC refresh cycle driving Intel/AMD/Qualcomm processor upgrades'] }
+                        ],
+                        features: [
+                            { title: 'Mature Growth', desc: 'Smartphone and PC markets growing at low single-digit CAGRs (3-5%). Replacement cycles extending to 3-4 years' },
+                            { title: 'AI PC Catalyst', desc: 'NPU-equipped PCs requiring new chip architectures. AI PC market projected at 50M+ units in 2025, growing to 200M+ by 2028' },
+                            { title: 'ASP Uplift', desc: 'AI features driving 10-20% ASP increases for premium smartphones and PCs, benefiting chip makers despite flat unit growth' },
+                            { title: 'Foldable/Wearable', desc: 'Foldable phones, smartwatches, and AR glasses creating new chip form factors and demand categories' }
+                        ],
+                        opportunity: 'AI smartphone and AI PC upgrade cycles. On-device AI requiring more powerful SoCs with NPUs, driving semiconductor content per device up 15-25%.',
+                        threat: 'Extended replacement cycles and macroeconomic weakness in consumer spending. Geopolitical tensions disrupting China smartphone market access.',
+                        niche: null
+                    },
+                    {
+                        name: 'Industrial & IoT Devices',
+                        leaders: [
+                            { name: 'Siemens', ticker: 'SIE.DE', share: '10%', strengths: ['Leading industrial automation company driving PLCs, sensors, and edge computing chip demand', 'Digital Industries division setting standards for Industry 4.0 semiconductor requirements'] },
+                            { name: 'Schneider Electric', ticker: 'SU.PA', share: '7%', strengths: ['Energy management and industrial automation driving power semiconductor demand', 'EcoStruxure platform creating edge AI compute requirements across industrial facilities'] },
+                            { name: 'ABB Ltd', ticker: 'ABBN.SW', share: '6%', strengths: ['Robotics and electrification divisions consuming broad analog and power semiconductors', 'Drive systems and motor controls requiring SiC and IGBT modules'] },
+                            { name: 'Honeywell', ticker: 'HON', share: '5%', strengths: ['Process automation and building controls driving MCU and sensor chip demand', 'Quantum computing and advanced materials creating future semiconductor demand'] }
+                        ],
+                        features: [
+                            { title: 'Fragmented Demand', desc: 'CR4 ~32% reflecting diverse industrial end markets with no single dominant buyer' },
+                            { title: 'Industry 4.0', desc: 'Factory automation requiring edge AI chips, industrial MCUs, and connectivity modules. Industrial IoT market growing 12% CAGR' },
+                            { title: 'Long Design Cycles', desc: 'Industrial equipment has 5-10 year design cycles and 15-20 year production runs, favoring established chip suppliers' },
+                            { title: 'Energy Transition', desc: 'Solar inverters, wind power converters, and grid infrastructure driving SiC and GaN power semiconductor demand' }
+                        ],
+                        opportunity: 'Edge AI for predictive maintenance and quality control. Each smart factory estimated to contain $5-10M in semiconductor content, up from $1-2M in legacy facilities.',
+                        threat: 'Industrial slowdown in Europe and China weighing on near-term chip demand. Inventory adjustment in industrial distribution continuing through 2025.',
+                        niche: {
+                            name: 'Lattice Semiconductor',
+                            ticker: 'LSCC',
+                            share: '2%',
+                            cagr: '15%',
+                            margin: '69% (gross)',
+                            strategy: 'Low-power FPGAs for industrial edge AI and IoT. Nexus and Certus platforms enabling hardware-flexible designs. Network edge, automotive, and industrial focus',
+                            valuation: 'Market cap ~$7B; P/E ~40x; premium FPGA niche with 69% gross margins'
+                        }
+                    }
+                ]
+            }
+        };
+
+        let activeStage = null;
+        let activeFilter = 'all';
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const moreButtons = document.querySelectorAll('.more-btn');
+        const closeBtn = document.querySelector('.close-btn');
+        const backdrop = document.querySelector('.backdrop');
+        const sidePanel = document.querySelector('.side-panel');
+        const panelTitle = document.querySelector('.panel-title');
+        const panelContent = document.querySelector('.panel-content');
+        const mainContent = document.querySelector('.main-content');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                activeFilter = btn.dataset.filter;
+                applyFilter();
+            });
+        });
+
+        moreButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const stage = btn.dataset.stage;
+                openPanel(stage);
+            });
+        });
+
+        closeBtn.addEventListener('click', closePanel);
+        backdrop.addEventListener('click', closePanel);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && sidePanel.classList.contains('active')) {
+                closePanel();
+            }
+        });
+
+        function openPanel(stage) {
+            activeStage = stage;
+            const data = stageData[stage];
+
+            panelTitle.textContent = data.title;
+            panelContent.innerHTML = '';
+
+            data.subindustries.forEach(sub => {
+                const card = createSubindustryCard(sub);
+                panelContent.appendChild(card);
+            });
+
+            backdrop.classList.add('active');
+            sidePanel.classList.add('active');
+            mainContent.classList.add('panel-open');
+        }
+
+        function closePanel() {
+            backdrop.classList.remove('active');
+            sidePanel.classList.remove('active');
+            mainContent.classList.remove('panel-open');
+            activeStage = null;
+        }
+
+        function createSubindustryCard(sub) {
+            const card = document.createElement('div');
+            card.className = 'subindustry-card';
+
+            let html = '<h3>' + escapeHtml(sub.name) + '</h3>';
+
+            html += '<div class="leaders-section">';
+            html += '<div class="leaders-title">Leading Companies</div>';
+            sub.leaders.forEach((leader, idx) => {
+                html += '<div class="company-item">';
+                html += '<div class="company-name">' + (idx + 1) + '. ' + escapeHtml(leader.name) + ' (' + escapeHtml(leader.ticker) + ') \u2013 ' + escapeHtml(leader.share) + '</div>';
+                html += '<ul class="company-strengths">';
+                leader.strengths.forEach(strength => {
+                    html += '<li>' + escapeHtml(strength) + '</li>';
+                });
+                html += '</ul></div>';
+            });
+            html += '</div>';
+
+            if (sub.features && sub.features.length > 0) {
+                html += '<div class="features-section">';
+                html += '<div class="features-title">Key Features</div>';
+                sub.features.forEach(feature => {
+                    html += '<div class="feature-item"><strong>' + escapeHtml(feature.title) + ':</strong> ' + escapeHtml(feature.desc) + '</div>';
+                });
+                html += '</div>';
+            }
+
+            if (sub.opportunity) {
+                html += '<div class="opportunity-section">';
+                html += '<div class="section-label">Opportunity</div>';
+                html += '<div class="section-content">' + escapeHtml(sub.opportunity) + '</div>';
+                html += '</div>';
+            }
+
+            if (sub.threat) {
+                html += '<div class="threat-section">';
+                html += '<div class="section-label">Threat</div>';
+                html += '<div class="section-content">' + escapeHtml(sub.threat) + '</div>';
+                html += '</div>';
+            }
+
+            if (sub.niche) {
+                html += '<div class="niche-section">';
+                html += '<div class="niche-title">Niche Winner</div>';
+                html += '<div class="niche-item"><strong>Company:</strong> ' + escapeHtml(sub.niche.name) + ' (' + escapeHtml(sub.niche.ticker) + ') - ' + escapeHtml(sub.niche.share) + ' market share</div>';
+                html += '<div class="niche-item"><strong>Revenue CAGR:</strong> ' + escapeHtml(sub.niche.cagr) + '</div>';
+                html += '<div class="niche-item"><strong>Margins:</strong> ' + escapeHtml(sub.niche.margin) + '</div>';
+                html += '<div class="niche-item"><strong>Strategy:</strong> ' + escapeHtml(sub.niche.strategy) + '</div>';
+                html += '<div class="niche-item"><strong>Valuation:</strong> ' + escapeHtml(sub.niche.valuation) + '</div>';
+                html += '</div>';
+            }
+
+            card.innerHTML = html;
+            return card;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function applyFilter() {
+            const sections = document.querySelectorAll('.section');
+
+            sections.forEach(section => {
+                const rows = section.querySelectorAll('tbody tr');
+                let sectionHasVisibleRow = false;
+
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length < 4) return;
+
+                    const cr4 = parseInt(cells[1].textContent);
+                    const probitBadge = cells[2].querySelector('.probit-badge');
+                    const probit = probitBadge ? probitBadge.textContent.trim() : '';
+                    const cagrText = cells[3].textContent.replace('%', '').trim();
+                    const cagr = parseFloat(cagrText);
+                    const subName = cells[0].textContent.trim();
+
+                    const stage = section.dataset.stage;
+                    const data = stageData[stage];
+                    const subData = data ? data.subindustries.find(s => s.name === subName) : null;
+                    const hasNiche = subData && subData.niche !== null;
+                    const hasLeaders = subData && subData.leaders && subData.leaders.length > 0;
+
+                    let show = true;
+
+                    switch (activeFilter) {
+                        case 'high-concentration':
+                            show = cr4 > 60;
+                            break;
+                        case 'high-growth':
+                            show = cagr > 10;
+                            break;
+                        case 'probit-hh':
+                            show = probit === 'HH';
+                            break;
+                        case 'leaders':
+                            show = cr4 > 50 && hasLeaders;
+                            break;
+                        case 'niches':
+                            show = hasNiche;
+                            break;
+                        case 'all':
+                        default:
+                            show = true;
+                    }
+
+                    row.style.display = show ? '' : 'none';
+                    if (show) sectionHasVisibleRow = true;
+                });
+
+                section.style.display = sectionHasVisibleRow ? 'block' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>

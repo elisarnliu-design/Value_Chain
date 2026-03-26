@@ -1,0 +1,11 @@
+# Value Chain Explorer — 任务运行器
+# 用法: just start
+
+set shell := ["powershell", "-NoProfile", "-Command"]
+
+default:
+    just --list
+
+start:
+    $p = netstat -ano | Select-String ':5173\s+.*LISTENING' | ForEach-Object { ($_ -split '\s+')[-1] } | Select-Object -Unique; if ($p) { Write-Host "[清理] 正在终止占用端口 5173 的进程 PID: $p"; taskkill /PID $p /T /F } else { Write-Host "[OK] 端口 5173 可用" }
+    cd vce-app; npm run dev
