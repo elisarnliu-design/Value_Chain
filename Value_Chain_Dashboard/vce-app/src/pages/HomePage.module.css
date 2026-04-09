@@ -17,9 +17,11 @@
   --radius-sm:   5px;
 
   /* Row stripe colours (very subtle left-border accent only) */
-  --accent-a: #0d9488;
+  /* Teal-leaning steel: muted like HH rgb(33,128,141), reads cool & cohesive */
+  --accent-a: #457da5;
   --accent-c: #6366f1;
-  --accent-f: #d97706;
+  /* Olive-gold: muted like HH teal, reads well beside rgb(33,128,141) */
+  --accent-f: #9a8d46;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -59,9 +61,15 @@
 .title {
   font-size: clamp(1.4rem, 2.5vw, 2rem);
   font-weight: 700;
-  color: var(--primary);
+  color: #3c5d60;
   margin: 0 0 0.35rem;
   letter-spacing: -0.02em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #c7d2f0;
+  }
 }
 
 .subtitle {
@@ -84,6 +92,59 @@
 
 /* ── Row block ───────────────────────────────────── */
 .rowBlock { display: flex; flex-direction: column; gap: 0.5rem; }
+
+/* Advanced (A): harmonized blue (same logic as F — page chip vs deeper controls) */
+.rowA {
+  --primary: #457da5;
+  --primary-dim: rgba(69, 125, 165, 0.22);
+}
+
+.rowA .sectorId {
+  background: #457da5;
+  color: #f8fafc;
+}
+
+.rowA .industryBtn:hover .indName,
+.rowA .subBtn:hover .subName,
+.rowA .moreBtn {
+  color: #335e78;
+}
+
+.rowA .subBtn:hover {
+  border-left-color: #457da5;
+}
+
+.rowA .moreBtn:hover {
+  border-color: #457da5;
+}
+
+/* Core (C): inherits --primary from :root (incl. dark mode) */
+.rowC {}
+
+/* Foundation (F): olive-gold (harmonized with HH ProBIT teal) */
+.rowF {
+  --primary: #9a8d46;
+  --primary-dim: rgba(154, 141, 70, 0.14);
+}
+
+.rowF .sectorId {
+  background: #9a8d46;
+  color: #fffbeb;
+}
+
+.rowF .industryBtn:hover .indName,
+.rowF .subBtn:hover .subName,
+.rowF .moreBtn {
+  color: #5a5328;
+}
+
+.rowF .subBtn:hover {
+  border-left-color: #9a8d46;
+}
+
+.rowF .moreBtn:hover {
+  border-color: #9a8d46;
+}
 
 .rowLabel {
   display: flex;

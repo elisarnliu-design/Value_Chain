@@ -3,10 +3,11 @@ import styles from "./ValueChainDashboard.module.css";
 import FilterBar from "./FilterBar";
 import ConcentrationTable from "./ConcentrationTable";
 import SidePanel from "./SidePanel";
-import type { ValueChain, SubIndustry, FilterType } from "../types/valueChain";
+import type { ValueChain, SubIndustry, FilterType, ColumnGroup } from "../types/valueChain";
 
 interface ValueChainDashboardProps {
   chain: ValueChain;
+  group: ColumnGroup;
 }
 
 function filterSubIndustry(sub: SubIndustry, filter: FilterType): boolean {
@@ -27,7 +28,7 @@ function filterSubIndustry(sub: SubIndustry, filter: FilterType): boolean {
   }
 }
 
-const ValueChainDashboard: React.FC<ValueChainDashboardProps> = ({ chain }) => {
+const ValueChainDashboard: React.FC<ValueChainDashboardProps> = ({ chain, group }) => {
   const [activeFilter, setActiveFilter] = useState<FilterType>("all");
   const [activeSubIndustry, setActiveSubIndustry] = useState<SubIndustry | null>(null);
 
@@ -36,7 +37,11 @@ const ValueChainDashboard: React.FC<ValueChainDashboardProps> = ({ chain }) => {
   }, []);
 
   return (
-    <div className={styles.dashboard}>
+    <div
+      className={`${styles.dashboard}${
+        group !== "C" ? ` ${styles[`theme${group}`]}` : ""
+      }`}
+    >
       <FilterBar activeFilter={activeFilter} onFilterChange={setActiveFilter} />
 
       <div className={styles.contentWrapper}>

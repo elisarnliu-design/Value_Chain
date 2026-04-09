@@ -145,6 +145,89 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * Matrix themes: Value Chain *page* header uses the same accent as HomePage
+ * (#457da5 / #9a8d46 / #0d9488). Inside the dashboard, filters / More / side
+ * panel use a *deeper* shade — same idea as Core (teal-600 on the page vs
+ * teal-500 controls in this file’s :root).
+ */
+/*
+ * Advanced (A): teal-leaning steel — page chip #457da5; controls one step deeper,
+ * muted saturation (pairs with HH rgb(33,128,141) like F olive-gold).
+ */
+.dashboard.themeA {
+  --color-teal-300: rgba(118, 158, 196, 1);
+  --color-teal-400: rgba(88, 128, 168, 1);
+  --color-teal-500: rgba(54, 97, 126, 1);
+  --color-teal-600: rgba(44, 82, 108, 1);
+  --color-teal-700: rgba(36, 68, 90, 1);
+  --color-teal-800: rgba(74, 118, 152, 1);
+  --color-teal-500-rgb: 54, 97, 126;
+  --color-teal-300-rgb: 118, 158, 196;
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-success: var(--color-teal-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-success-rgb: 54, 97, 126;
+  --color-btn-primary-text: var(--color-cream-50);
+}
+
+/* Core (C): no theme class — page uses #0d9488; dashboard uses :root (deeper teal-500 vs page) */
+
+/*
+ * Foundation (F): olive-gold controls — deeper than page chip, muted saturation
+ * (similar “weight” to HH rgb(33,128,141)) so gold + HH teal sit harmoniously.
+ */
+.dashboard.themeF {
+  --color-teal-300: rgba(182, 168, 102, 1);
+  --color-teal-400: rgba(162, 144, 78, 1);
+  --color-teal-500: rgba(126, 110, 54, 1);
+  --color-teal-600: rgba(110, 96, 46, 1);
+  --color-teal-700: rgba(94, 82, 40, 1);
+  --color-teal-800: rgba(148, 132, 72, 1);
+  --color-teal-500-rgb: 126, 110, 54;
+  --color-teal-300-rgb: 182, 168, 102;
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-success: var(--color-teal-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-success-rgb: 126, 110, 54;
+  --color-btn-primary-text: var(--color-cream-50);
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Slightly deeper than .page.themeA/F --primary so the split reads in dark UI too */
+  .dashboard.themeA {
+    --color-teal-300: rgba(108, 172, 212, 1);
+    --color-teal-400: rgba(92, 158, 200, 1);
+    --color-teal-500: rgba(76, 142, 186, 1);
+    --color-teal-600: rgba(62, 124, 168, 1);
+    --color-teal-700: rgba(52, 108, 148, 1);
+    --color-teal-800: rgba(98, 168, 208, 1);
+    --color-teal-500-rgb: 76, 142, 186;
+    --color-teal-300-rgb: 108, 172, 212;
+    --color-focus-ring: rgba(76, 142, 186, 0.45);
+    --color-success-rgb: 76, 142, 186;
+    --color-btn-primary-text: var(--color-slate-900);
+  }
+
+  .dashboard.themeF {
+    --color-teal-300: rgba(200, 184, 118, 1);
+    --color-teal-400: rgba(184, 166, 92, 1);
+    --color-teal-500: rgba(162, 144, 72, 1);
+    --color-teal-600: rgba(142, 126, 60, 1);
+    --color-teal-700: rgba(122, 108, 52, 1);
+    --color-teal-800: rgba(188, 172, 102, 1);
+    --color-teal-500-rgb: 162, 144, 72;
+    --color-teal-300-rgb: 200, 184, 118;
+    --color-focus-ring: rgba(162, 144, 72, 0.45);
+    --color-success-rgb: 162, 144, 72;
+    --color-btn-primary-text: var(--color-slate-900);
+  }
+}
+
 .header {
   text-align: center;
   margin-bottom: var(--space-32);
@@ -215,10 +298,16 @@
 .sectionHeader {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-text);
+  color: #3c5d60;
   margin-bottom: var(--space-16);
   padding-bottom: var(--space-12);
   border-bottom: 2px solid var(--color-border);
+}
+
+@media (prefers-color-scheme: dark) {
+  .sectionHeader {
+    color: #a8c5c9;
+  }
 }
 
 .concentrationTable {
@@ -267,28 +356,55 @@
   font-size: var(--font-size-xs);
 }
 
+/* ProBIT badges: fixed palette (independent of A/C/F matrix theme) */
 .probitHH {
-  background-color: rgba(var(--color-success-rgb), 0.2);
-  color: var(--color-success);
-  border: 1px solid var(--color-success);
+  background-color: rgba(33, 128, 141, 0.2);
+  color: rgb(33, 128, 141);
+  border: 1px solid rgb(33, 128, 141);
 }
 
 .probitHL {
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  border: 1px solid var(--color-border);
+  background-color: rgba(94, 82, 64, 0.12);
+  color: rgb(33, 128, 141);
+  border: 1px solid rgba(94, 82, 64, 0.2);
 }
 
 .probitLH {
-  background-color: rgba(var(--color-warning-rgb), 0.15);
-  color: var(--color-warning);
-  border: 1px solid var(--color-warning);
+  background-color: rgba(168, 75, 47, 0.15);
+  color: rgb(168, 75, 47);
+  border: 1px solid rgb(168, 75, 47);
 }
 
 .probitLL {
-  background-color: rgba(var(--color-error-rgb), 0.15);
-  color: var(--color-error);
-  border: 1px solid var(--color-error);
+  background-color: rgba(192, 21, 47, 0.15);
+  color: rgb(192, 21, 47);
+  border: 1px solid rgb(192, 21, 47);
+}
+
+@media (prefers-color-scheme: dark) {
+  .probitHH {
+    background-color: rgba(50, 184, 198, 0.2);
+    color: rgb(50, 184, 198);
+    border: 1px solid rgb(50, 184, 198);
+  }
+
+  .probitHL {
+    background-color: rgba(119, 124, 124, 0.15);
+    color: rgb(50, 184, 198);
+    border: 1px solid rgba(119, 124, 124, 0.3);
+  }
+
+  .probitLH {
+    background-color: rgba(230, 129, 97, 0.15);
+    color: rgb(230, 129, 97);
+    border: 1px solid rgb(230, 129, 97);
+  }
+
+  .probitLL {
+    background-color: rgba(255, 84, 89, 0.15);
+    color: rgb(255, 84, 89);
+    border: 1px solid rgb(255, 84, 89);
+  }
 }
 
 .moreBtnContainer {
@@ -453,8 +569,9 @@
 }
 
 .opportunitySection {
-  background: rgba(var(--color-success-rgb), 0.1);
-  border-left: 3px solid var(--color-success);
+  /* Fixed teal (matrix theme does not affect Opportunity) */
+  background: rgba(33, 128, 141, 0.1);
+  border-left: 3px solid rgb(33, 128, 141);
 }
 
 .threatSection {
@@ -469,7 +586,18 @@
 }
 
 .opportunitySection .sectionLabel {
-  color: var(--color-success);
+  color: rgb(33, 128, 141);
+}
+
+@media (prefers-color-scheme: dark) {
+  .opportunitySection {
+    background: rgba(50, 184, 198, 0.12);
+    border-left-color: rgb(50, 184, 198);
+  }
+
+  .opportunitySection .sectionLabel {
+    color: rgb(50, 184, 198);
+  }
 }
 
 .threatSection .sectionLabel {

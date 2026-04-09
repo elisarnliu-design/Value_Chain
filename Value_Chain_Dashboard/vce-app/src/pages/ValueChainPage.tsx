@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { getIndustryByCode } from "../data/classification";
+import { getIndustryByCode, getGroupFromImCode } from "../data/classification";
 import { getValueChain } from "../data/valueChains";
 import ValueChainDashboard from "../components/ValueChainDashboard";
 import styles from "./ValueChainPage.module.css";
@@ -9,9 +9,10 @@ export default function ValueChainPage() {
   const decodedCode = code ? decodeURIComponent(code) : "";
   const industry = getIndustryByCode(decodedCode);
   const chain = getValueChain(decodedCode);
+  const group = getGroupFromImCode(decodedCode);
 
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${styles[`theme${group}`]}`}>
       {/* ── Nav bar ── */}
       <nav className={styles.nav}>
         <Link to="/" className={styles.backLink}>
@@ -41,7 +42,7 @@ export default function ValueChainPage() {
 
       {/* ── Content ── */}
       {chain ? (
-        <ValueChainDashboard chain={chain} />
+        <ValueChainDashboard chain={chain} group={group} />
       ) : (
         <main className={styles.main}>
           <div className={styles.comingSoon}>

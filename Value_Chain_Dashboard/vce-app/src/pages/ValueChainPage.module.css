@@ -27,6 +27,35 @@
   font-family: system-ui, -apple-system, sans-serif;
 }
 
+/* Matrix column accents — match HomePage (A blue, C teal, F gold) */
+.page.themeA {
+  --primary: #457da5;
+}
+
+.page.themeF {
+  --primary: #9a8d46;
+}
+
+@media (prefers-color-scheme: dark) {
+  .page.themeA {
+    --primary: #78b0d4;
+  }
+
+  .page.themeF {
+    --primary: #c2b56e;
+  }
+}
+
+.page.themeA .imCode {
+  background: #457da5;
+  color: #f8fafc;
+}
+
+.page.themeF .imCode {
+  background: #9a8d46;
+  color: #fffbeb;
+}
+
 /* ── Nav ────────────────────────────────────────────────────── */
 
 .nav {
@@ -87,6 +116,13 @@
   font-weight: 700;
   margin: 0 0 0.2rem;
   letter-spacing: -0.02em;
+  color: #3c5d60;
+}
+
+@media (prefers-color-scheme: dark) {
+  .title {
+    color: #a8c5c9;
+  }
 }
 
 .subtitle {

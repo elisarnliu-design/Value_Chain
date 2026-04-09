@@ -32,7 +32,7 @@ export default function HomePage() {
       {/* ── Header ── */}
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <h1 className={styles.title}>Value Chains Explorer</h1>
+          <h1 className={styles.title}>Industry Matrix & Value Chains Explorer</h1>
           <p className={styles.subtitle}>
             Select an industry to explore its complete 6-stage value chain —
             concentration metrics, ProBIT analysis, leading companies, and
@@ -48,7 +48,7 @@ export default function HomePage() {
           const { label, subtitle } = GROUP_LABELS[group];
 
           return (
-            <div key={group} className={styles.rowBlock}>
+            <div key={group} className={`${styles.rowBlock} ${styles[`row${group}`]}`}>
               {/* Row label strip */}
               <div className={styles.rowLabel}>
                 <span className={styles.rowGroupId}>{label}</span>

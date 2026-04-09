@@ -1,4 +1,4 @@
-import type { ClassificationSector } from "../types/valueChain";
+import type { ClassificationSector, ColumnGroup } from "../types/valueChain";
 
 /**
  * Full 3-level classification tree extracted from classification text_20260202.docx.
@@ -661,17 +661,38 @@ export const sectorById: Record<string, ClassificationSector> = Object.fromEntri
 
 /** All industries and sub-industries as a flat searchable list */
 export const allIndustries = classificationTree.flatMap((sector) =>
-  sector.industries.map((ind) => ({
-    ...ind,
-    sectorId: sector.id,
-    sectorName: sector.name,
-    group: sector.group,
-    row: sector.row,
-  }))
+  sector.industries.flatMap((ind) => {
+    const industryRow = {
+      ...ind,
+      sectorId: sector.id,
+      sectorName: sector.name,
+      group: sector.group,
+      row: sector.row,
+    };
+    const subRows =
+      ind.subIndustries?.map((sub) => ({
+        code: sub.code,
+        name: sub.name,
+        parentSector: sector.id,
+        parentIndustry: sub.parentIndustry,
+        sectorId: sector.id,
+        sectorName: sector.name,
+        group: sector.group,
+        row: sector.row,
+      })) ?? [];
+    return [industryRow, ...subRows];
+  })
 );
 
 export function getIndustryByCode(code: string) {
   return allIndustries.find((ind) => ind.code === code);
+}
+
+/** First letter of IM code is the matrix column group (A / C / F). */
+export function getGroupFromImCode(code: string): ColumnGroup {
+  const g = code.trim().charAt(0).toUpperCase();
+  if (g === "A" || g === "C" || g === "F") return g;
+  return "C";
 }
 
 /**
