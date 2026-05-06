@@ -52,7 +52,11 @@ export interface SubIndustry {
   name: string;
   cr4: number;       // top-4 revenue share %
   probit: ProBIT;    // colour-coded profitability × growth badge
-  cagr: number;      // CAGR 2023-2025
+  /** Blended operating margin % (sub-industry / representative peers, TTM or latest FY) */
+  operatingMargin: number;
+  cagr: number;      // CAGR 2023–2026
+  /** Forward CAGR, 2026–2030 window (consensus / internal estimate %) */
+  cagrForward: number;
   leaders: LeaderCompany[];
   features: Feature[];
   opportunity?: string;
@@ -110,6 +114,7 @@ export type FilterType =
   | "all"
   | "high-concentration"   // CR4 > 60
   | "high-growth"          // CAGR > 10
+  | "high-cagr-forward"      // CAGR (2026–2030) >= 10
+  | "high-operating-margin" // Operating Margin > 15
   | "probit-hh"            // ProBIT === "HH"
-  | "leaders"              // CR4 > 50
   | "niches";              // has NicheWinner

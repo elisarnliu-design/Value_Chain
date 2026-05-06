@@ -35,8 +35,8 @@ export default function HomePage() {
           <h1 className={styles.title}>Industry Matrix & Value Chains Explorer</h1>
           <p className={styles.subtitle}>
             Select an industry to explore its complete 6-stage value chain —
-            concentration metrics, ProBIT analysis, leading companies, and
-            investment insights.
+            concentration metrics, ProBIT (E&S), Operating Margin, trailing CAGR
+            (2023–2026), CAGR (2026–2030), leading companies, and investment insights.
           </p>
         </div>
       </header>
@@ -129,7 +129,7 @@ export default function HomePage() {
 
         <p className={styles.footNote}>
           Click any entry to view its complete value chain analysis. ·
-          Data: 10-K/10-Q filings, IBISWorld, Mordor Intelligence (2024–2025).
+          Data: 10-K/10-Q filings, IBISWorld, Mordor Intelligence (2024–2026).
         </p>
       </main>
     </div>

@@ -16,10 +16,12 @@ function filterSubIndustry(sub: SubIndustry, filter: FilterType): boolean {
       return sub.cr4 >= 60;
     case "high-growth":
       return sub.cagr >= 10;
+    case "high-cagr-forward":
+      return sub.cagrForward >= 10;
+    case "high-operating-margin":
+      return sub.operatingMargin > 15;
     case "probit-hh":
       return sub.probit === "HH";
-    case "leaders":
-      return sub.cr4 > 50;
     case "niches":
       return sub.niche !== undefined;
     case "all":
@@ -68,7 +70,8 @@ const ValueChainDashboard: React.FC<ValueChainDashboardProps> = ({ chain, group 
 
           <div className={styles.dataSource}>
             Data: Company 10-K/10-Q filings, IBISWorld, Mordor Intelligence,
-            Industry Reports (2024-2025). Estimates marked where applicable.
+            Industry Reports (2024-2026). CAGR (2026-2030) and Operating Margin are
+            estimates or consensus where marked.
           </div>
         </div>
 

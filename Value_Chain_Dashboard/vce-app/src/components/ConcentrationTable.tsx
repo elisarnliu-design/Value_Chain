@@ -20,7 +20,9 @@ const ConcentrationTable: React.FC<ConcentrationTableProps> = ({
             <th>Sub-Industry</th>
             <th>CR4 (%)</th>
             <th>ProBIT (E&amp;S)</th>
-            <th>CAGR (2023–2025)</th>
+            <th>Operating Margin (%)</th>
+            <th>CAGR (2023–2026)</th>
+            <th>CAGR (2026-2030)</th>
             <th></th>
           </tr>
         </thead>
@@ -32,7 +34,9 @@ const ConcentrationTable: React.FC<ConcentrationTableProps> = ({
               <td>
                 <ProbitBadge value={sub.probit} />
               </td>
+              <td>{sub.operatingMargin}%</td>
               <td>{sub.cagr}%</td>
+              <td>{sub.cagrForward}%</td>
               <td>
                 <button
                   className={styles.moreBtn}

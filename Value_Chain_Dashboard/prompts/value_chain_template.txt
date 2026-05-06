@@ -16,7 +16,9 @@ Output ONLY a valid JSON object (no markdown, no extra text) matching this exact
           "name": "Sub-industry name",
           "cr4": 75,
           "probit": "HH",
+          "operatingMargin": 18.5,
           "cagr": 4.8,
+          "cagrForward": 5.2,
           "classificationCodes": [],
           "leaders": [
             {
@@ -41,17 +43,21 @@ Output ONLY a valid JSON object (no markdown, no extra text) matching this exact
   ]
 }
 
+FIELD ORDER (each subIndustry object): name, cr4, probit, operatingMargin, cagr, cagrForward, then leaders, features, opportunity, threat, niche, classificationCodes.
+
 RULES:
 1. stages array MUST contain exactly 6 objects with id values (in order): "upstream", "processing", "manufacturing", "distribution", "sales", "customer"
 2. Each stage MUST have at least 3 subIndustries (aim for 4-6)
 3. cr4: integer 0-100 (top-4 revenue share %)
 4. probit: MUST be exactly one of "HH", "HL", "LH", "LL" — ProBIT = Profitability (H/L) × Growth (H/L). HH = high profit + high growth (green); HL = high profit + low growth (teal); LH = low profit + high growth (orange); LL = low profit + low growth (red)
-5. cagr: decimal number (NOT a string, no % sign) e.g. 4.8 not "4.8%"
-6. leaders[].share: decimal number (NOT a string, no % sign) e.g. 28 not "28%"
-7. classificationCodes: always an empty array []
-8. niche: either null OR an object with fields: name (string), ticker (string), share (number), cagr (number), margin (string e.g. ">20%"), strategy (string), valuation (string e.g. "P/E 45x")
-9. Use latest available data (2023-2025), prioritize public companies with verifiable 10-K/10-Q filings
-10. Output ONLY the JSON — no markdown code fences, no preamble, no explanation
+5. operatingMargin: decimal number (NOT a string, no % sign) — blended Operating Margin % for the sub-industry (TTM or latest FY, representative peers)
+6. cagr: decimal number (NOT a string, no % sign) e.g. 4.8 not "4.8%" — historical revenue CAGR for 2023–2026
+7. cagrForward: decimal number (NOT a string, no % sign) — forward-looking revenue (or relevant) CAGR % for 2026–2030 (consensus or defensible estimates)
+8. leaders[].share: decimal number (NOT a string, no % sign) e.g. 28 not "28%"
+9. classificationCodes: always an empty array []
+10. niche: either null OR an object with fields: name (string), ticker (string), share (number), cagr (number), margin (string e.g. ">20%"), strategy (string), valuation (string e.g. "P/E 45x")
+11. Use latest available data through 2026 where applicable; prioritize public companies with verifiable 10-K/10-Q filings
+12. Output ONLY the JSON — no markdown code fences, no preamble, no explanation
 
 Industry to analyze: {INDUSTRY_NAME}
 IM Code: {IM_CODE}

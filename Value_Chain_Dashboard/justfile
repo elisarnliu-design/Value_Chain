@@ -9,3 +9,23 @@ default:
 start:
     $p = netstat -ano | Select-String ':5173\s+.*LISTENING' | ForEach-Object { ($_ -split '\s+')[-1] } | Select-Object -Unique; if ($p) { Write-Host "[清理] 正在终止占用端口 5173 的进程 PID: $p"; taskkill /PID $p /T /F } else { Write-Host "[OK] 端口 5173 可用" }
     cd vce-app; npm run dev
+
+# API key: set PERPLEXITY_API_KEY or put it in Value_Chain_Dashboard/.env (see .env.example).
+# Generates all A2 sub-industry chains (20) and rewrites valueChains/index.ts after each success.
+generate-a2:
+    py batch_a2_subindustries.py
+
+# Same as generate-a2 but skips IM codes that already have a non-empty .ts file (retry after partial run).
+generate-a2-resume:
+    py batch_a2_subindustries.py --skip-existing
+
+# A2 industry rows only (A2-10 Print Media & Publishing … A2-90); updates index after each file.
+generate-a2-industries:
+    py batch_a2_industries.py
+
+generate-a2-industries-resume:
+    py batch_a2_industries.py --skip-existing
+
+# Rewrite vce-app/src/data/valueChains/index.ts from *.ts chain files only (no API).
+index-value-chains:
+    py batch_a2_subindustries.py --index-only

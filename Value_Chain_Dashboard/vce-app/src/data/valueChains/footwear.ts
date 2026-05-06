@@ -15,6 +15,8 @@ export const footwearData: ValueChain = {
           cr4: 65.0,
           probit: "LL",
           cagr: 2.1,
+          operatingMargin: 6.7,
+          cagrForward: 1.0,
           classificationCodes: [],
           leaders: [
             {
@@ -50,6 +52,8 @@ export const footwearData: ValueChain = {
           cr4: 72.0,
           probit: "HL",
           cagr: 3.2,
+          operatingMargin: 9.5,
+          cagrForward: 2.0,
           classificationCodes: [],
           leaders: [
             {
@@ -85,6 +89,8 @@ export const footwearData: ValueChain = {
           cr4: 58.0,
           probit: "LH",
           cagr: 5.1,
+          operatingMargin: 9.0,
+          cagrForward: 6.9,
           classificationCodes: [],
           leaders: [
             {
@@ -111,6 +117,8 @@ export const footwearData: ValueChain = {
           cr4: 68.0,
           probit: "LL",
           cagr: 1.8,
+          operatingMargin: 6.5,
+          cagrForward: 0.8,
           classificationCodes: [],
           leaders: [
             {
@@ -137,6 +145,8 @@ export const footwearData: ValueChain = {
           cr4: 55.0,
           probit: "HL",
           cagr: 3.5,
+          operatingMargin: 9.9,
+          cagrForward: 2.2,
           classificationCodes: [],
           leaders: [
             {
@@ -169,6 +179,8 @@ export const footwearData: ValueChain = {
           cr4: 62.0,
           probit: "LL",
           cagr: 1.9,
+          operatingMargin: 6.5,
+          cagrForward: 0.9,
           classificationCodes: [],
           leaders: [
             {
@@ -195,6 +207,8 @@ export const footwearData: ValueChain = {
           cr4: 70.0,
           probit: "LH",
           cagr: 4.2,
+          operatingMargin: 8.4,
+          cagrForward: 5.8,
           classificationCodes: [],
           leaders: [
             {
@@ -221,6 +235,8 @@ export const footwearData: ValueChain = {
           cr4: 75.0,
           probit: "HL",
           cagr: 3.0,
+          operatingMargin: 9.3,
+          cagrForward: 1.8,
           classificationCodes: [],
           leaders: [
             {
@@ -247,6 +263,8 @@ export const footwearData: ValueChain = {
           cr4: 80.0,
           probit: "HH",
           cagr: 5.8,
+          operatingMargin: 11.8,
+          cagrForward: 7.3,
           classificationCodes: [],
           leaders: [
             {
@@ -279,6 +297,8 @@ export const footwearData: ValueChain = {
           cr4: 45.0,
           probit: "LH",
           cagr: 4.5,
+          operatingMargin: 8.6,
+          cagrForward: 6.2,
           classificationCodes: [],
           leaders: [
             {
@@ -314,6 +334,8 @@ export const footwearData: ValueChain = {
           cr4: 85.0,
           probit: "HH",
           cagr: 6.2,
+          operatingMargin: 12.3,
+          cagrForward: 7.7,
           classificationCodes: [],
           leaders: [
             {
@@ -340,6 +362,8 @@ export const footwearData: ValueChain = {
           cr4: 52.0,
           probit: "HL",
           cagr: 3.1,
+          operatingMargin: 9.4,
+          cagrForward: 1.9,
           classificationCodes: [],
           leaders: [
             {
@@ -366,6 +390,8 @@ export const footwearData: ValueChain = {
           cr4: 78.0,
           probit: "HH",
           cagr: 4.8,
+          operatingMargin: 10.7,
+          cagrForward: 6.2,
           classificationCodes: [],
           leaders: [
             {
@@ -401,6 +427,8 @@ export const footwearData: ValueChain = {
           cr4: 60.0,
           probit: "LL",
           cagr: 2.7,
+          operatingMargin: 7.0,
+          cagrForward: 1.4,
           classificationCodes: [],
           leaders: [
             {
@@ -433,6 +461,8 @@ export const footwearData: ValueChain = {
           cr4: 55.0,
           probit: "LH",
           cagr: 5.0,
+          operatingMargin: 8.9,
+          cagrForward: 6.8,
           classificationCodes: [],
           leaders: [
             {
@@ -459,6 +489,8 @@ export const footwearData: ValueChain = {
           cr4: 70.0,
           probit: "HL",
           cagr: 3.4,
+          operatingMargin: 9.8,
+          cagrForward: 2.1,
           classificationCodes: [],
           leaders: [
             {
@@ -485,6 +517,8 @@ export const footwearData: ValueChain = {
           cr4: 48.0,
           probit: "LL",
           cagr: 2.5,
+          operatingMargin: 6.9,
+          cagrForward: 1.2,
           classificationCodes: [],
           leaders: [
             {
@@ -511,6 +545,8 @@ export const footwearData: ValueChain = {
           cr4: 65.0,
           probit: "LH",
           cagr: 6.1,
+          operatingMargin: 9.7,
+          cagrForward: 8.1,
           classificationCodes: [],
           leaders: [
             {
@@ -543,6 +579,8 @@ export const footwearData: ValueChain = {
           cr4: 82.0,
           probit: "HH",
           cagr: 7.2,
+          operatingMargin: 13.4,
+          cagrForward: 8.9,
           classificationCodes: [],
           leaders: [
             {
@@ -578,6 +616,8 @@ export const footwearData: ValueChain = {
           cr4: 60.0,
           probit: "LL",
           cagr: 2.0,
+          operatingMargin: 6.6,
+          cagrForward: 0.9,
           classificationCodes: [],
           leaders: [
             {
@@ -613,6 +653,8 @@ export const footwearData: ValueChain = {
           cr4: 75.0,
           probit: "HH",
           cagr: 12.5,
+          operatingMargin: 19.2,
+          cagrForward: 14.8,
           classificationCodes: [],
           leaders: [
             {
@@ -648,6 +690,8 @@ export const footwearData: ValueChain = {
           cr4: 68.0,
           probit: "LL",
           cagr: 1.2,
+          operatingMargin: 6.2,
+          cagrForward: 0.5,
           classificationCodes: [],
           leaders: [
             {
@@ -680,6 +724,8 @@ export const footwearData: ValueChain = {
           cr4: 70.0,
           probit: "HH",
           cagr: 6.8,
+          operatingMargin: 12.9,
+          cagrForward: 8.4,
           classificationCodes: [],
           leaders: [
             {
@@ -706,6 +752,8 @@ export const footwearData: ValueChain = {
           cr4: 45.0,
           probit: "HL",
           cagr: 3.9,
+          operatingMargin: 10.4,
+          cagrForward: 2.5,
           classificationCodes: [],
           leaders: [
             {
@@ -732,6 +780,8 @@ export const footwearData: ValueChain = {
           cr4: 55.0,
           probit: "LL",
           cagr: 2.3,
+          operatingMargin: 6.8,
+          cagrForward: 1.1,
           classificationCodes: [],
           leaders: [
             {
@@ -758,6 +808,8 @@ export const footwearData: ValueChain = {
           cr4: 82.0,
           probit: "HH",
           cagr: 5.5,
+          operatingMargin: 11.5,
+          cagrForward: 7.0,
           classificationCodes: [],
           leaders: [
             {
@@ -784,6 +836,8 @@ export const footwearData: ValueChain = {
           cr4: 50.0,
           probit: "LH",
           cagr: 4.7,
+          operatingMargin: 8.7,
+          cagrForward: 6.4,
           classificationCodes: [],
           leaders: [
             {

@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./ValueChainDashboard.module.css";
+import ProbitBadge from "./ProbitBadge";
 import type { SubIndustry } from "../types/valueChain";
 
 interface SubindustryCardProps {
@@ -10,6 +11,29 @@ const SubindustryCard: React.FC<SubindustryCardProps> = ({ subIndustry: sub }) =
   return (
     <div className={styles.subindustryCard}>
       <h3>{sub.name}</h3>
+
+      <div className={styles.keyMetrics}>
+        <div className={styles.keyMetric}>
+          <span className={styles.keyMetricLabel}>CR4</span>
+          <span>{sub.cr4}%</span>
+        </div>
+        <div className={styles.keyMetric}>
+          <span className={styles.keyMetricLabel}>ProBIT (E&amp;S)</span>
+          <ProbitBadge value={sub.probit} />
+        </div>
+        <div className={styles.keyMetric}>
+          <span className={styles.keyMetricLabel}>Operating Margin</span>
+          <span>{sub.operatingMargin}%</span>
+        </div>
+        <div className={styles.keyMetric}>
+          <span className={styles.keyMetricLabel}>CAGR (2023–2026)</span>
+          <span>{sub.cagr}%</span>
+        </div>
+        <div className={styles.keyMetric}>
+          <span className={styles.keyMetricLabel}>CAGR (2026-2030)</span>
+          <span>{sub.cagrForward}%</span>
+        </div>
+      </div>
 
       <div className={styles.leadersSection}>
         <div className={styles.leadersTitle}>Leading Companies</div>

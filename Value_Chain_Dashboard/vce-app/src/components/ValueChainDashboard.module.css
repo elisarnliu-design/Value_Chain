@@ -315,6 +315,7 @@
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   overflow: hidden;
+  overflow-x: auto;
   border: 1px solid var(--color-card-border);
 }
 
@@ -495,6 +496,34 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-text);
   margin: 0 0 var(--space-16) 0;
+}
+
+.keyMetrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(132px, 1fr));
+  gap: var(--space-12);
+  margin-bottom: var(--space-20);
+  padding: var(--space-12);
+  background: var(--color-secondary);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-card-border-inner);
+}
+
+.keyMetric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.keyMetricLabel {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .leadersSection {
@@ -689,7 +718,7 @@
   }
 
   .concentrationTable table {
-    min-width: 480px;
+    min-width: 640px;
   }
 
   /* side panel is full-width overlay on mobile */

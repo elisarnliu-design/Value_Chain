@@ -6,8 +6,9 @@ const FILTERS: { label: string; value: FilterType }[] = [
   { label: "All Sub-Industries", value: "all" },
   { label: "High Concentration (CR4 >60%)", value: "high-concentration" },
   { label: "High Growth (CAGR >10%)", value: "high-growth" },
+  { label: "High CAGR (2026-2030) (≥10%)", value: "high-cagr-forward" },
+  { label: "High Operating Margin (>15%)", value: "high-operating-margin" },
   { label: "ProBIT HH Only", value: "probit-hh" },
-  { label: "Leaders Focus", value: "leaders" },
   { label: "Niche Winners Only", value: "niches" },
 ];
 

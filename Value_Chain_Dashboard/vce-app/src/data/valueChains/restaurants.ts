@@ -15,6 +15,8 @@ export const restaurantsData: ValueChain = {
           cr4: 42.0,
           probit: "LH",
           cagr: 3.2,
+          operatingMargin: 7.7,
+          cagrForward: 4.6,
           classificationCodes: [],
           leaders: [
             {
@@ -50,6 +52,8 @@ export const restaurantsData: ValueChain = {
           cr4: 35.0,
           probit: "LL",
           cagr: 2.8,
+          operatingMargin: 7.0,
+          cagrForward: 1.4,
           classificationCodes: [],
           leaders: [
             {
@@ -76,6 +80,8 @@ export const restaurantsData: ValueChain = {
           cr4: 85.0,
           probit: "HH",
           cagr: 4.5,
+          operatingMargin: 10.4,
+          cagrForward: 5.8,
           classificationCodes: [],
           leaders: [
             {
@@ -120,6 +126,8 @@ export const restaurantsData: ValueChain = {
           cr4: 55.0,
           probit: "HL",
           cagr: 2.1,
+          operatingMargin: 8.1,
+          cagrForward: 1.2,
           classificationCodes: [],
           leaders: [
             {
@@ -152,6 +160,8 @@ export const restaurantsData: ValueChain = {
           cr4: 68.0,
           probit: "HL",
           cagr: 3.1,
+          operatingMargin: 9.4,
+          cagrForward: 1.9,
           classificationCodes: [],
           leaders: [
             {
@@ -187,6 +197,8 @@ export const restaurantsData: ValueChain = {
           cr4: 72.0,
           probit: "LH",
           cagr: 4.2,
+          operatingMargin: 8.4,
+          cagrForward: 5.8,
           classificationCodes: [],
           leaders: [
             {
@@ -213,6 +225,8 @@ export const restaurantsData: ValueChain = {
           cr4: 60.0,
           probit: "LL",
           cagr: 2.9,
+          operatingMargin: 7.1,
+          cagrForward: 1.5,
           classificationCodes: [],
           leaders: [
             {
@@ -239,6 +253,8 @@ export const restaurantsData: ValueChain = {
           cr4: 78.0,
           probit: "HH",
           cagr: 5.1,
+          operatingMargin: 11.1,
+          cagrForward: 6.5,
           classificationCodes: [],
           leaders: [
             {
@@ -271,6 +287,8 @@ export const restaurantsData: ValueChain = {
           cr4: 15.0,
           probit: "LH",
           cagr: 4.8,
+          operatingMargin: 8.8,
+          cagrForward: 6.6,
           classificationCodes: [],
           leaders: [
             {
@@ -297,6 +315,8 @@ export const restaurantsData: ValueChain = {
           cr4: 22.0,
           probit: "HL",
           cagr: 3.5,
+          operatingMargin: 9.9,
+          cagrForward: 2.2,
           classificationCodes: [],
           leaders: [
             {
@@ -323,6 +343,8 @@ export const restaurantsData: ValueChain = {
           cr4: 28.0,
           probit: "HH",
           cagr: 4.2,
+          operatingMargin: 10.1,
+          cagrForward: 5.5,
           classificationCodes: [],
           leaders: [
             {
@@ -349,6 +371,8 @@ export const restaurantsData: ValueChain = {
           cr4: 65.0,
           probit: "HL",
           cagr: 3.8,
+          operatingMargin: 10.3,
+          cagrForward: 2.4,
           classificationCodes: [],
           leaders: [
             {
@@ -381,6 +405,8 @@ export const restaurantsData: ValueChain = {
           cr4: 52.0,
           probit: "HL",
           cagr: 3.9,
+          operatingMargin: 10.4,
+          cagrForward: 2.5,
           classificationCodes: [],
           leaders: [
             {
@@ -416,6 +442,8 @@ export const restaurantsData: ValueChain = {
           cr4: 75.0,
           probit: "LH",
           cagr: 15.2,
+          operatingMargin: 15.9,
+          cagrForward: 19.0,
           classificationCodes: [],
           leaders: [
             {
@@ -451,6 +479,8 @@ export const restaurantsData: ValueChain = {
           cr4: 48.0,
           probit: "LL",
           cagr: 4.1,
+          operatingMargin: 7.8,
+          cagrForward: 2.3,
           classificationCodes: [],
           leaders: [
             {
@@ -483,6 +513,8 @@ export const restaurantsData: ValueChain = {
           cr4: 45.0,
           probit: "HH",
           cagr: 5.2,
+          operatingMargin: 11.2,
+          cagrForward: 6.6,
           classificationCodes: [],
           leaders: [
             {
@@ -518,6 +550,8 @@ export const restaurantsData: ValueChain = {
           cr4: 38.0,
           probit: "LH",
           cagr: 6.8,
+          operatingMargin: 10.2,
+          cagrForward: 9.0,
           classificationCodes: [],
           leaders: [
             {
@@ -544,6 +578,8 @@ export const restaurantsData: ValueChain = {
           cr4: 25.0,
           probit: "LL",
           cagr: 2.4,
+          operatingMargin: 6.8,
+          cagrForward: 1.2,
           classificationCodes: [],
           leaders: [
             {
@@ -570,6 +606,8 @@ export const restaurantsData: ValueChain = {
           cr4: 82.0,
           probit: "HH",
           cagr: 18.5,
+          operatingMargin: 25.7,
+          cagrForward: 21.5,
           classificationCodes: [],
           leaders: [
             {
@@ -611,6 +649,8 @@ export const restaurantsData: ValueChain = {
           cr4: 18.0,
           probit: "HL",
           cagr: 3.6,
+          operatingMargin: 10.0,
+          cagrForward: 2.3,
           classificationCodes: [],
           leaders: [
             {
@@ -637,6 +677,8 @@ export const restaurantsData: ValueChain = {
           cr4: 55.0,
           probit: "HH",
           cagr: 7.2,
+          operatingMargin: 13.4,
+          cagrForward: 8.9,
           classificationCodes: [],
           leaders: [
             {
@@ -672,6 +714,8 @@ export const restaurantsData: ValueChain = {
           cr4: 70.0,
           probit: "LH",
           cagr: 16.8,
+          operatingMargin: 17.0,
+          cagrForward: 21.0,
           classificationCodes: [],
           leaders: [
             {
@@ -698,6 +742,8 @@ export const restaurantsData: ValueChain = {
           cr4: 62.0,
           probit: "LL",
           cagr: 4.5,
+          operatingMargin: 8.0,
+          cagrForward: 2.6,
           classificationCodes: [],
           leaders: [
             {

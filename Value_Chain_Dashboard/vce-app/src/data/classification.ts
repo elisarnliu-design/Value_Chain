@@ -495,7 +495,7 @@ export const classificationTree: ClassificationSector[] = [
     id: "F2", group: "F", row: 2, name: "General Technologies",
     industries: [
       {
-        code: "F2-10", name: "Semiconductors for PC", parentSector: "F2",
+        code: "F2-10", name: "Semiconductors", parentSector: "F2",
         subIndustries: [
           { code: "F2-1010", name: "Semiconductor Materials", parentIndustry: "F2-10" },
           { code: "F2-1020", name: "Semiconductor Manufacturing", parentIndustry: "F2-10" },

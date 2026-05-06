@@ -3,20 +3,85 @@ import json
 import os
 import argparse
 import re
+import time
 from pathlib import Path
+from typing import Any, Optional
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 PROMPT_FILE = os.path.join(script_dir, "prompts", "value_chain_template.txt")
 OUTPUT_DIR = os.path.join(script_dir, "vce-app", "src", "data", "valueChains")
 
+
+def load_local_env() -> None:
+    """Load KEY=VALUE pairs from .env next to this script; never overrides existing os.environ."""
+    env_path = os.path.join(script_dir, ".env")
+    if not os.path.isfile(env_path):
+        return
+    with open(env_path, encoding="utf-8") as f:
+        for raw in f:
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            if "=" not in line:
+                continue
+            key, _, val = line.partition("=")
+            key = key.strip()
+            if not key or key in os.environ:
+                continue
+            val = val.strip()
+            if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
+                val = val[1:-1]
+            os.environ[key] = val
+
+
+load_local_env()
 API_KEY = os.environ.get("PERPLEXITY_API_KEY", "")
 
 VALID_STAGE_IDS = {"upstream", "processing", "manufacturing", "distribution", "sales", "customer"}
 VALID_PROBIT = {"HH", "HL", "LH", "LL"}
 
+_DEFAULT_MAX_TOKENS = 12_000
+_DEFAULT_MAX_RETRIES = 4
+
+
+def _extract_json_str(response_text: str) -> str:
+    """Pull a JSON object string from model output; raises ValueError if not found."""
+    if response_text is None:
+        raise ValueError("Model returned no content (null)")
+    text = response_text.strip()
+    if not text:
+        raise ValueError("Model returned empty content")
+
+    if "```json" in text:
+        json_start = text.find("```json") + 7
+        json_end = text.find("```", json_start)
+        if json_end < json_start:
+            json_end = len(text)
+    elif "```" in text:
+        json_start = text.find("```") + 3
+        json_end = text.find("```", json_start)
+        if json_end < json_start:
+            json_end = len(text)
+    else:
+        json_start = text.find("{")
+        json_end = text.rfind("}")
+        if json_start < 0 or json_end < json_start:
+            raise ValueError(
+                f"No JSON object in model output (preview): {text[:800]!r}"
+            )
+        return text[json_start : json_end + 1].strip()
+
+    fragment = text[json_start:json_end].strip()
+    if not fragment.startswith("{"):
+        inner = fragment.find("{")
+        last = fragment.rfind("}")
+        if inner >= 0 and last >= inner:
+            fragment = fragment[inner : last + 1]
+    return fragment
+
 
 def generate_value_chain_data(industry_name: str, im_code: str) -> dict:
-    """Call Perplexity API and return parsed JSON."""
+    """Call Perplexity API and return parsed JSON (retries on empty / bad parse)."""
     with open(PROMPT_FILE, "r", encoding="utf-8") as f:
         prompt_template = f.read()
 
@@ -26,46 +91,53 @@ def generate_value_chain_data(industry_name: str, im_code: str) -> dict:
         "Authorization": f"Bearer {API_KEY}",
         "Content-Type": "application/json",
     }
-    payload = {
-        "model": "sonar-pro",
-        "messages": [{"role": "user", "content": prompt}],
-        "max_tokens": 8000,
-    }
+    max_tokens = int(os.environ.get("PERPLEXITY_MAX_TOKENS", str(_DEFAULT_MAX_TOKENS)))
+    max_retries = int(os.environ.get("PERPLEXITY_MAX_RETRIES", str(_DEFAULT_MAX_RETRIES)))
 
-    print(f"  Calling Perplexity API for {industry_name} ({im_code})...")
-    response = requests.post(
-        "https://api.perplexity.ai/chat/completions",
-        headers=headers,
-        json=payload,
-        timeout=120,
-    )
-    response.raise_for_status()
-    result = response.json()
+    last_err: Optional[BaseException] = None
+    for attempt in range(1, max_retries + 1):
+        content_preview = ""
+        payload = {
+            "model": "sonar-pro",
+            "messages": [{"role": "user", "content": prompt}],
+            "max_tokens": max_tokens,
+        }
+        print(f"  Calling Perplexity API for {industry_name} ({im_code})… (attempt {attempt}/{max_retries})")
+        try:
+            response = requests.post(
+                "https://api.perplexity.ai/chat/completions",
+                headers=headers,
+                json=payload,
+                timeout=180,
+            )
+            response.raise_for_status()
+            result: dict[str, Any] = response.json()
+            choices = result.get("choices") or []
+            if not choices:
+                raise ValueError(f"No choices in API response: {str(result)[:1200]}")
 
-    response_text = result["choices"][0]["message"]["content"]
+            msg = choices[0].get("message") or {}
+            response_text = msg.get("content")
+            content_preview = (response_text or "")[:1500]
+            finish = choices[0].get("finish_reason")
+            if finish == "length":
+                print("  Warning: response truncated (finish_reason=length); consider raising PERPLEXITY_MAX_TOKENS")
 
-    # Strip markdown code fences if present
-    if "```json" in response_text:
-        json_start = response_text.find("```json") + 7
-        json_end = response_text.find("```", json_start)
-        json_str = response_text[json_start:json_end].strip()
-    elif "```" in response_text:
-        json_start = response_text.find("```") + 3
-        json_end = response_text.find("```", json_start)
-        json_str = response_text[json_start:json_end].strip()
-    else:
-        json_start = response_text.find("{")
-        json_end = response_text.rfind("}") + 1
-        json_str = response_text[json_start:json_end]
+            json_str = _extract_json_str(response_text or "")
+            data = json.loads(json_str)
+            return data
+        except (json.JSONDecodeError, ValueError, requests.RequestException, KeyError) as e:
+            last_err = e
+            print(f"  Attempt {attempt} failed: {e}")
+            if content_preview:
+                print(f"  Content preview: {content_preview!r}")
+            if attempt < max_retries:
+                wait = min(60, 5 * attempt * attempt)
+                print(f"  Retrying in {wait}s…")
+                time.sleep(wait)
 
-    try:
-        data = json.loads(json_str)
-    except json.JSONDecodeError as e:
-        print(f"  JSON parse error: {e}")
-        print(f"  Raw snippet: {json_str[:800]}")
-        raise
-
-    return data
+    assert last_err is not None
+    raise last_err
 
 
 def parse_num(v) -> float:
@@ -108,7 +180,9 @@ def transform_to_value_chain(raw: dict, industry_name: str, im_code: str) -> dic
                 "name": sub.get("name", ""),
                 "cr4": parse_num(sub.get("cr4", 0)),
                 "probit": probit,
+                "operatingMargin": parse_num(sub.get("operatingMargin", 0)),
                 "cagr": parse_num(sub.get("cagr", 0)),
+                "cagrForward": parse_num(sub.get("cagrForward", sub.get("gcar", 0))),
                 "classificationCodes": sub.get("classificationCodes", []),
                 "leaders": [
                     {
@@ -184,7 +258,7 @@ def save_as_value_chain_ts(chain: dict, export_name: str, output_path: str):
 
     ts_literal = to_ts_value(chain, indent=0)
     content = (
-        "import { ValueChain } from '../../types/valueChain';\n\n"
+        "import type { ValueChain } from '../../types/valueChain';\n\n"
         f"export const {export_name}: ValueChain = {ts_literal};\n"
     )
 
@@ -222,6 +296,12 @@ def validate_chain(chain: dict, industry_name: str) -> bool:
             if not isinstance(sub.get("cagr"), (int, float)):
                 print(f"  ⚠️  Sub '{sub.get('name')}' cagr is not a number")
                 ok = False
+            if not isinstance(sub.get("operatingMargin"), (int, float)):
+                print(f"  ⚠️  Sub '{sub.get('name')}' operatingMargin is not a number")
+                ok = False
+            if not isinstance(sub.get("cagrForward"), (int, float)):
+                print(f"  ⚠️  Sub '{sub.get('name')}' cagrForward is not a number")
+                ok = False
             for leader in sub.get("leaders", []):
                 if not isinstance(leader.get("share"), (int, float)):
                     print(f"  ⚠️  Leader '{leader.get('name')}' share is not a number")
@@ -232,8 +312,21 @@ def validate_chain(chain: dict, industry_name: str) -> bool:
     return ok
 
 
-def run(industry_name: str, im_code: str, export_name: str):
-    snake = industry_name.lower().replace(" ", "_").replace("/", "_")
+def run(
+    industry_name: str,
+    im_code: str,
+    export_name: str,
+    file_basename: Optional[str] = None,
+):
+    if not API_KEY.strip():
+        raise SystemExit(
+            "PERPLEXITY_API_KEY is not set in the environment. "
+            "Set it before running industry generation."
+        )
+    if file_basename:
+        snake = file_basename.lower().replace("-", "_")
+    else:
+        snake = industry_name.lower().replace(" ", "_").replace("/", "_")
     output_path = os.path.join(OUTPUT_DIR, f"{snake}.ts")
 
     print(f"\n{'='*60}")
@@ -252,14 +345,26 @@ if __name__ == "__main__":
     parser.add_argument("--name", required=True, help="Industry name, e.g. 'Footwear'")
     parser.add_argument("--code", required=True, help="IM code, e.g. 'C1-1020'")
     parser.add_argument("--export", default=None, help="TS export name, e.g. 'footwearData' (auto-derived if omitted)")
+    parser.add_argument(
+        "--file-basename",
+        default=None,
+        help="Output .ts filename stem (e.g. a2_1010). Default: derived from --name",
+    )
     args = parser.parse_args()
 
-    # Derive export name: "Footwear" → "footwearData"
-    export_name = args.export or (
-        args.name.lower().replace(" ", "_").replace("/", "_") + "Data"
-    )
-    # camelCase: footwear_data → footwearData
-    parts = export_name.split("_")
-    export_name = parts[0] + "".join(p.capitalize() for p in parts[1:])
+    if args.file_basename:
+        file_bn = args.file_basename.lower().replace("-", "_")
+        if args.export:
+            export_name = args.export
+        else:
+            export_name = file_bn + "Data"
+    else:
+        file_bn = None
+        export_name = args.export or (
+            args.name.lower().replace(" ", "_").replace("/", "_") + "Data"
+        )
+        if not args.export:
+            parts = export_name.split("_")
+            export_name = parts[0] + "".join(p.capitalize() for p in parts[1:])
 
-    run(args.name, args.code, export_name)
+    run(args.name, args.code, export_name, file_basename=file_bn)

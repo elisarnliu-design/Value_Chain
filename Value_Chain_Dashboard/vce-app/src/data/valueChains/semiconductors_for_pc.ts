@@ -15,6 +15,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 85.0,
           probit: "HH",
           cagr: 5.2,
+          operatingMargin: 11.2,
+          cagrForward: 6.6,
           classificationCodes: [],
           leaders: [
             {
@@ -50,6 +52,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 70.0,
           probit: "HL",
           cagr: 3.8,
+          operatingMargin: 10.3,
+          cagrForward: 2.4,
           classificationCodes: [],
           leaders: [
             {
@@ -85,6 +89,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 65.0,
           probit: "LH",
           cagr: 6.1,
+          operatingMargin: 9.7,
+          cagrForward: 8.1,
           classificationCodes: [],
           leaders: [
             {
@@ -120,6 +126,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 90.0,
           probit: "HH",
           cagr: 7.5,
+          operatingMargin: 13.7,
+          cagrForward: 9.2,
           classificationCodes: [],
           leaders: [
             {
@@ -161,6 +169,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 75.0,
           probit: "HH",
           cagr: 8.2,
+          operatingMargin: 14.5,
+          cagrForward: 10.0,
           classificationCodes: [],
           leaders: [
             {
@@ -205,6 +215,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 60.0,
           probit: "LH",
           cagr: 10.1,
+          operatingMargin: 12.4,
+          cagrForward: 12.9,
           classificationCodes: [],
           leaders: [
             {
@@ -240,6 +252,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 95.0,
           probit: "HH",
           cagr: 6.8,
+          operatingMargin: 12.9,
+          cagrForward: 8.4,
           classificationCodes: [],
           leaders: [
             {
@@ -266,6 +280,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 70.0,
           probit: "HL",
           cagr: 4.5,
+          operatingMargin: 11.1,
+          cagrForward: 2.9,
           classificationCodes: [],
           leaders: [
             {
@@ -307,6 +323,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 90.0,
           probit: "HH",
           cagr: 7.2,
+          operatingMargin: 13.4,
+          cagrForward: 8.9,
           classificationCodes: [],
           leaders: [
             {
@@ -342,6 +360,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 85.0,
           probit: "HH",
           cagr: 12.5,
+          operatingMargin: 19.2,
+          cagrForward: 14.8,
           classificationCodes: [],
           leaders: [
             {
@@ -377,6 +397,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 80.0,
           probit: "LH",
           cagr: 15.8,
+          operatingMargin: 16.3,
+          cagrForward: 19.8,
           classificationCodes: [],
           leaders: [
             {
@@ -421,6 +443,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 60.0,
           probit: "LL",
           cagr: 4.2,
+          operatingMargin: 7.8,
+          cagrForward: 2.4,
           classificationCodes: [],
           leaders: [
             {
@@ -462,6 +486,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 55.0,
           probit: "HL",
           cagr: 3.5,
+          operatingMargin: 9.9,
+          cagrForward: 2.2,
           classificationCodes: [],
           leaders: [
             {
@@ -497,6 +523,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 40.0,
           probit: "LL",
           cagr: 2.8,
+          operatingMargin: 7.0,
+          cagrForward: 1.4,
           classificationCodes: [],
           leaders: [
             {
@@ -523,6 +551,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 65.0,
           probit: "LH",
           cagr: 5.1,
+          operatingMargin: 9.0,
+          cagrForward: 6.9,
           classificationCodes: [],
           leaders: [
             {
@@ -555,6 +585,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 85.0,
           probit: "HH",
           cagr: 11.2,
+          operatingMargin: 17.7,
+          cagrForward: 13.3,
           classificationCodes: [],
           leaders: [
             {
@@ -590,6 +622,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 70.0,
           probit: "HL",
           cagr: 4.8,
+          operatingMargin: 11.5,
+          cagrForward: 3.2,
           classificationCodes: [],
           leaders: [
             {
@@ -616,6 +650,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 75.0,
           probit: "LH",
           cagr: 6.3,
+          operatingMargin: 9.8,
+          cagrForward: 8.4,
           classificationCodes: [],
           leaders: [
             {
@@ -651,6 +687,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 50.0,
           probit: "LL",
           cagr: 2.9,
+          operatingMargin: 7.1,
+          cagrForward: 1.5,
           classificationCodes: [],
           leaders: [
             {
@@ -683,6 +721,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 70.0,
           probit: "LH",
           cagr: 3.2,
+          operatingMargin: 7.7,
+          cagrForward: 4.6,
           classificationCodes: [],
           leaders: [
             {
@@ -718,6 +758,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 65.0,
           probit: "LL",
           cagr: 1.8,
+          operatingMargin: 6.5,
+          cagrForward: 0.8,
           classificationCodes: [],
           leaders: [
             {
@@ -753,6 +795,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 80.0,
           probit: "HL",
           cagr: 4.5,
+          operatingMargin: 11.1,
+          cagrForward: 2.9,
           classificationCodes: [],
           leaders: [
             {
@@ -779,6 +823,8 @@ export const semiconductorsData: ValueChain = {
           cr4: 55.0,
           probit: "LH",
           cagr: 5.7,
+          operatingMargin: 9.4,
+          cagrForward: 7.6,
           classificationCodes: [],
           leaders: [
             {
